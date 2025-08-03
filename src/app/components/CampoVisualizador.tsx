@@ -44,7 +44,11 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack 
                         <div className="flex justify-center items-center gap-[0.05rem]">
                             <div onClick={() => onSelect(1)} className="relative">
                                 <div className="absolute top-0 left-0 z-30">
-                                    <button className="bg-[rgba(100,255,300,0.5)] h-[210px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">Seleccionar Campo 1</button>
+                                    <button className="bg-[rgba(100,255,300,0.5)] h-[190px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">
+                                        <div className="button-attention text-center bg-[rgba(82,255,105,0.38)] text-black rounded-md text-xs">
+                                            Seleccionar Campo 1
+                                        </div>
+                                    </button>
                                 </div>
                                 <div className="relative z-20">
                                     <Image className="transform rotate-180 mt-[0.15rem]" src="/canchaderecha.png" alt="campo" width={100} height={100} />
@@ -52,7 +56,11 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack 
                             </div>
                             <div onClick={() => onSelect(2)} className="relative">
                                 <div className="absolute top-0 left-0 z-30">
-                                    <button className="bg-[rgba(100,255,300,0.5)] h-[210px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">Seleccionar Campo 2</button>
+                                    <button className="bg-[rgba(100,255,300,0.5)] h-[190px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">
+                                        <div className="button-attention text-center bg-[rgba(82,255,105,0.38)] text-black rounded-md text-xs">
+                                            Seleccionar Campo 2
+                                        </div>
+                                    </button>
                                 </div>
                                 <div className="relative z-20">
                                     <Image className="transform rotate-180 mt-[0.15rem]" src="/canchamedio1.png" alt="campo" width={94} height={94} />
@@ -60,9 +68,9 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack 
                             </div>
                             <div onClick={() => onSelect(3)} className="relative">
                                 <div className="absolute top-0 left-0 z-30">
-                                    <button className="bg-[rgba(173,173,173,0.8)] h-[210px] w-full border-1 rounded-md mr-2 px-[0.5px]  flex justify-center items-center">
-                                        <div className="text-center flex justify-center items-center bg-red-400 text-white rounded-md px-2 w-11/12">
-                                            Ocupada
+                                    <button className="bg-[rgba(173,173,173,0.8)] h-[190px] w-full border-1 rounded-md mr-2 px-[0.5px]  flex justify-center items-center">
+                                        <div className="text-center flex justify-center items-center bg-red-400 text-white rounded-md px-2 w-12/12 text-xs">
+                                            -Ocupada-
                                         </div>
                                     </button>
                                 </div>
@@ -72,7 +80,11 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack 
                             </div>
                             <div onClick={() => onSelect(4)} className="relative">
                                 <div className="absolute top-0 left-0 z-30">
-                                    <button className="bg-[rgba(100,255,300,0.5)] h-[210px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">Seleccionar Campo 4</button>
+                                    <button className="bg-[rgba(100,255,300,0.5)] h-[190px] w-full border-1 rounded-md mr-2 px-[0.5px] hover:bg-[rgba(200,200,200,0.5)] text-xs font-bold">
+                                        <div className="button-attention text-center bg-[rgba(82,255,105,0.38)] text-black rounded-md text-xs">
+                                            Seleccionar Campo 4
+                                        </div>
+                                    </button>
                                 </div>
                                 <div className="relative z-20">
                                     <Image className="scale-x-[-1] rotate-180 mt-[0.15rem]" src="/canchaderecha.png" alt="campo" width={100} height={100} />
@@ -102,7 +114,7 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack 
                     }
                     <div className="mt-8 border-1 border-gray-200 p-4 rounded-lg bg-white">
                         <div>
-                            <div className="text-base">Resumen de Reserva</div>
+                            <div className="text-base mb-3">Resumen de Reserva:</div>
                         </div>
                         <div className="space-y-3">
                             <div className="flex justify-between items-center">
