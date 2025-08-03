@@ -1,5 +1,4 @@
 import { FormComprarTicket } from "@/app/components/Forms/FormComprarTicket"
-import { changeDecimales } from "@/app/functions/changeDecimales"
 import { Button } from "@mui/material"
 import { X } from "lucide-react"
 import { useState } from "react"
