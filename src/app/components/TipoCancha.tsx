@@ -5,7 +5,7 @@ type Modalidad = "futbol11" | "futbol7"
 interface ModalidadSelectorProps {
     onSelect: (modalidad: Modalidad) => void
 }
-export const ModalidadSelector = ({ onSelect }: ModalidadSelectorProps) => {
+export const ModalidadSelector = ({ onSelect, setValue, getValues }: any) => {
 
 
     return (
@@ -16,7 +16,10 @@ export const ModalidadSelector = ({ onSelect }: ModalidadSelectorProps) => {
             <div className="space-y-4">
                 <div
                     className="cursor-pointer hover:shadow-lg transition-shadow border-1 border-slate-300 hover:border-green-500 rounded-lg p-5 bg-white"
-                    onClick={() => onSelect("futbol11")}
+                    onClick={() => {
+                        onSelect("futbol11")
+                        setValue("typeCancha", "futbol11")
+                    }}
                 >
                     <div className="text-center">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -42,7 +45,10 @@ export const ModalidadSelector = ({ onSelect }: ModalidadSelectorProps) => {
 
                 <div
                     className="cursor-pointer hover:shadow-lg transition-shadow border-1 hover:border-blue-500 border-slate-300 rounded-lg p-5 bg-white"
-                    onClick={() => onSelect("futbol7")}
+                    onClick={() => {
+                        onSelect("futbol7")
+                        setValue("typeCancha", "futbol7")
+                    }}
                 >
                     <div className="text-center">
                         <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">

@@ -1,6 +1,6 @@
 import { ChevronLeft, CreditCard, Mail, Phone, User } from "lucide-react"
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+// import { useForm } from "react-hook-form"
 import useApi from "../hooks/fetchData/useApi"
 import { Button } from "@mui/material"
 import { FormComprarTicket } from "./Forms/FormComprarTicket"
@@ -18,7 +18,7 @@ interface FormularioReservaProps {
     onBack: () => void
 }
 
-export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComplete, onBack }: FormularioReservaProps) => {
+export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComplete, onBack, getValues, setValue, handleSubmit, control, onSubmit }: any) => {
 
     const [formData, setFormData] = useState({
         nombre: "",
@@ -29,7 +29,7 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
 
     const precio = modalidad === "futbol11" ? 120 : 90
 
-    const { handleSubmit, control, getValues, setValue } = useForm()
+    // const { handleSubmit, control, getValues, setValue } = useForm()
     const { apiCall, loading, error } = useApi()
 
     // const handleSubmit = (e: React.FormEvent) => {
@@ -40,24 +40,6 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
 
     const handleInputChange = (field: string, value: string) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
-    }
-
-    const onSubmit = async (data: any) => {
-        console.log("data: ", data);
-        console.log("data.nombres: ", data.nombres);
-        console.log("data.apellidoPaterno: ", data.apellidoPaterno);
-        console.log("data.apellidoMaterno: ", data.apellidoMaterno);
-        console.log("data.celular: ", data.celular);
-        Swal.fire({
-            title: "¡Reserva completa!",
-            text: "¡Se ha completado la reserva!",
-            icon: "success",
-            confirmButtonText: "OK",
-            preConfirm: () => {
-                Swal.close();
-                window.location.reload();
-            },
-        });
     }
 
     return (

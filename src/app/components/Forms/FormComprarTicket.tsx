@@ -14,7 +14,7 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
         <>
             <div className="flex flex-col gap-3">
                 {
-                    (userOld ? dataComprarTicket : dataComprarTicket?.filter((x: any) => x.name !== "fileUrl"))?.map((item: any, index: any) => {
+                    dataComprarTicket?.map((item: any, index: any) => {
                         return (
                             <>
                                 {
@@ -120,7 +120,7 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                                                             // disabled={row?.status !== SendStatus?.APPROVED}
                                                             style={{ textTransform: "none" }}
                                                         >
-                                                            {"Seleccionar Voucher (Obligatorio)"}
+                                                            {"Seleccionar Voucher"}
                                                             <input
                                                                 type="file"
                                                                 accept="image/*,application/pdf"
