@@ -38,7 +38,8 @@ export const ModalidadSelector = ({ onSelect, setValue, getValues }: any) => {
                                 <Users className="w-4 h-4" />
                                 <span>11 vs 11 jugadores</span>
                             </div>
-                            <div className="text-lg font-bold text-green-600 mt-3">S/. 120.00 soles/hora</div>
+                            <div className="text-lg font-bold text-green-600 mt-3">Mañana: S/. 220.00</div>
+                            <div className="text-lg font-bold text-green-600 mt-3">Noche: S/. 280.00</div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +68,8 @@ export const ModalidadSelector = ({ onSelect, setValue, getValues }: any) => {
                                 <Users className="w-4 h-4" />
                                 <span>7 vs 7 jugadores</span>
                             </div>
-                            <div className="text-lg font-bold text-blue-600 mt-3">S/. 90.00 soles/hora</div>
+                            <div className="text-lg font-bold text-blue-600 mt-3">Mañana: S/. 60.00</div>
+                            <div className="text-lg font-bold text-blue-600 mt-3">Noche: S/. 100.00</div>
                         </div>
                     </div>
                 </div>
