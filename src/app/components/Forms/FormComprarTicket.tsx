@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 
 export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, apiCall, loading, error }: any) => {
 
-    console.log("getValues uduario antiguo: ", getValues("UsuarioAntiguo"));
+    // console.log("getValues uduario antiguo: ", getValues("UsuarioAntiguo"));
     const userOld = getValues("UsuarioAntiguo");
 
     return (

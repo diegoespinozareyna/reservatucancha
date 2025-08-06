@@ -82,7 +82,13 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                     key={index}
                                     onClick={() => {
                                         setFechaSeleccionada(fecha)
-                                        getValues()?.typeCancha == "futbol11" ? fetchHorarios(fecha) : setValue(`horariosAll`, [])
+                                        if(getValues()?.typeCancha == "futbol11") {
+                                            fetchHorarios(fecha)
+                                        }
+                                        else {
+                                            console.log("entre3")
+                                            setValue(`horariosAll`, [])
+                                        }
                                     }}
                                     className={`flex-shrink-0 p-3 rounded-lg border-2 text-center min-w-[60px] ${esSeleccionada ? "border-green-500 bg-green-50" : "border-gray-200 hover:border-gray-300"
                                         }`}

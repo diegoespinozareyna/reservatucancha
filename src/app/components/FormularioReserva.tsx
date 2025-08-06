@@ -42,6 +42,8 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
         setFormData((prev) => ({ ...prev, [field]: value }))
     }
 
+    console.log("getValues: ", getValues()?.horariosAll?.filter((x: any) => x.status == "1"))
+
     return (
         <>
             <div className="space-y-4">
@@ -78,11 +80,11 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-sm text-gray-600">Horario:</span>
-                            <span className="font-medium">{horario}</span>
+                            <span className="font-medium">{getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
                         </div>
                         <div className="flex justify-between items-center pt-2 border-t">
                             <span className="font-medium">Total:</span>
-                            <span className="text-lg font-bold text-green-600">S/. {precio.toLocaleString()} soles</span>
+                            <span className="text-lg font-bold text-green-600">S/. {getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString()} soles</span>
                         </div>
                     </div>
                 </div>

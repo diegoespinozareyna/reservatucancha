@@ -29,116 +29,116 @@ export default function SeleccionarCancha() {
     console.log("formHortarios11: ", formHortarios11)
     // useEffect(() => {
     //     reset({
-    //         horariosAll: [
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "06:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "07:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "08:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "09:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "10:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "11:00 am",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "12:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "01:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "02:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "03:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "04:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "05:00 pm",
-    //                 status: "0",
-    //                 precio: "240"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "06:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "07:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "08:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "09:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "10:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //             {
-    //                 type: "futbol11",
-    //                 horario: "11:00 pm",
-    //                 status: "0",
-    //                 precio: "280"
-    //             },
-    //         ],
+    //         // horariosAll: [
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "06:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "07:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "08:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "09:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "10:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "11:00 am",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "12:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "01:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "02:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "03:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "04:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "05:00 pm",
+    //         //         status: "0",
+    //         //         precio: "240"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "06:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "07:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "08:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "09:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "10:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         //     {
+    //         //         type: "futbol11",
+    //         //         horario: "11:00 pm",
+    //         //         status: "0",
+    //         //         precio: "280"
+    //         //     },
+    //         // ],
     //         horariosCanchaFutbol7: [
     //             [
     //                 {
@@ -1093,12 +1093,933 @@ export default function SeleccionarCancha() {
             }
         }
     }
-    useEffect(() => {
-        if (pasoActual == "campo" && getValues()?.typeCancha == "futbol11") {
-            fetchHorarios(new Date())
+
+    const fetchHorariosFutbol7 = async (fecha: any) => {
+        console.log("fecha: ", fecha)
+        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/getFechaReservaFutbol7`;
+        const response = await apiCall({
+            method: "get", endpoint: url, data: null, params: { fecha: fecha }
+        })
+        if (response?.status === 201) {
+            console.log("responsefuianl: ", response)
+            if (response?.data?.length > 0) {
+                console.log("entre1")
+                setValue(`horariosCanchaFutbol7`, response?.data?.sort((a: any, b: any) => {
+                    const parseTime = (str: any) => {
+                        const [time, meridiem] = str.split(" ");
+                        let [hours, minutes] = time.split(":").map(Number);
+
+                        if (meridiem.toLowerCase() === "pm" && hours !== 12) {
+                            hours += 12;
+                        }
+                        if (meridiem.toLowerCase() === "am" && hours === 12) {
+                            hours = 0;
+                        }
+
+                        return hours * 60 + minutes;
+                    };
+
+                    return parseTime(a.horario) - parseTime(b.horario);
+                }))
+            }
+            else {
+                console.log("entre2")
+                setValue(`horariosCanchaFutbol7`, [
+                    [
+                        {
+                            type: "futbol7",
+                            value: "06:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "12:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "01:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "02:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "03:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "04:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "05:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "06:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                    ],
+                    [
+                        {
+                            type: "futbol7",
+                            value: "06:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "12:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "01:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "02:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "03:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "04:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "05:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "06:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                    ],
+                    [
+                        {
+                            type: "futbol7",
+                            value: "06:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "12:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "01:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "02:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "03:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "04:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "05:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "06:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                    ],
+                    [
+                        {
+                            type: "futbol7",
+                            value: "06:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 am",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "12:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "01:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "02:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "03:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "04:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "05:00 pm",
+                            status: "0",
+                            price: 60
+                        },
+                        {
+                            type: "futbol7",
+                            value: "06:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "07:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "08:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "09:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "10:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                        {
+                            type: "futbol7",
+                            value: "11:00 pm",
+                            status: "0",
+                            price: 80
+                        },
+                    ],
+                ])
+            }
         }
         else {
-            setValue(`horariosAll`, [])
+            setValue(`horariosCanchaFutbol7`, [
+                [
+                    {
+                        type: "futbol7",
+                        value: "06:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "12:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "01:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "02:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "03:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "04:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "05:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "06:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                ],
+                [
+                    {
+                        type: "futbol7",
+                        value: "06:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "12:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "01:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "02:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "03:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "04:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "05:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "06:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                ],
+                [
+                    {
+                        type: "futbol7",
+                        value: "06:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "12:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "01:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "02:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "03:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "04:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "05:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "06:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                ],
+                [
+                    {
+                        type: "futbol7",
+                        value: "06:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 am",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "12:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "01:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "02:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "03:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "04:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "05:00 pm",
+                        status: "0",
+                        price: 60
+                    },
+                    {
+                        type: "futbol7",
+                        value: "06:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "07:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "08:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "09:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "10:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                    {
+                        type: "futbol7",
+                        value: "11:00 pm",
+                        status: "0",
+                        price: 80
+                    },
+                ],
+            ])
+        }
+    }
+    useEffect(() => {
+        if (pasoActual == "campo" && getValues()?.typeCancha == "futbol11") {
+            fetchHorarios(moment.tz(new Date(), "America/Lima").format())
+        }
+        else if (pasoActual == "campo" && getValues()?.typeCancha == "futbol7") {
+            console.log("entre4")
+            fetchHorariosFutbol7(moment.tz(new Date(), "America/Lima").format())
         }
     }, [pasoActual])
 
@@ -1172,7 +2093,8 @@ export default function SeleccionarCancha() {
         console.log("jsonSend11: ", jsonSend11);
         console.log("jsonSend7: ", jsonSend7);
         const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaFutbol`;
-        if (modalidadSeleccionada === "futbol11") {
+        if (modalidadSeleccionada === "futbol11" || getValues()?.typeCancha === "futbol11") {
+            console.log("entre1")
             try {
                 const response = await apiCall({
                     method: "post", endpoint: url, data: jsonSend11
@@ -1192,6 +2114,7 @@ export default function SeleccionarCancha() {
                         allowOutsideClick: false,
                         preConfirm: () => {
                             setPasoActual("modalidad")
+                            reset()
                         },
                     });
                 }
@@ -1213,6 +2136,7 @@ export default function SeleccionarCancha() {
                 });
             }
         }
+        console.log("entre2")
     }
 
     return (
