@@ -985,73 +985,73 @@ export default function SeleccionarCancha() {
                         type: "futbol11",
                         horario: "06:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "07:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "08:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "09:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "10:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "11:00 am",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "12:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "01:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "02:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "03:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "04:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",
                         horario: "05:00 pm",
                         status: "0",
-                        precio: "240"
+                        precio: "220"
                     },
                     {
                         type: "futbol11",

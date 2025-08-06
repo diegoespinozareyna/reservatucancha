@@ -82,7 +82,7 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                     key={index}
                                     onClick={() => {
                                         setFechaSeleccionada(fecha)
-                                        if(getValues()?.typeCancha == "futbol11") {
+                                        if (getValues()?.typeCancha == "futbol11") {
                                             fetchHorarios(fecha)
                                         }
                                         else {
@@ -161,7 +161,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                             }}
                                         // className="h-12 relative"
                                         >
-                                            {horario}
+                                            <div>
+                                                <div>
+                                                    {horario}
+                                                </div>
+                                                <div className="text-[11px] text-gray-600">
+                                                    {`S/. ${Number(getValues()?.horariosAll?.[index]?.precio)?.toFixed(2)}`}
+                                                </div>
+                                            </div>
                                             {getValues(`horariosAll`)?.[index]?.status == "2" && (
                                                 <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
                                                     Ocupado
