@@ -27,892 +27,16 @@ export default function SeleccionarCancha() {
     console.log("formAll: ", formAll)
     const formHortarios11 = watch(`horariosAll`)
     console.log("formHortarios11: ", formHortarios11)
+
     // useEffect(() => {
+    //     fetchHorarios(moment.tz(new Date(), "America/Lima").format())
+    //     fetchHorariosFutbol7(moment.tz(new Date(), "America/Lima").format())
     //     reset({
-    //         // horariosAll: [
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "06:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "07:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "08:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "09:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "10:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "11:00 am",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "12:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "01:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "02:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "03:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "04:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "05:00 pm",
-    //         //         status: "0",
-    //         //         precio: "240"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "06:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "07:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "08:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "09:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "10:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         //     {
-    //         //         type: "futbol11",
-    //         //         horario: "11:00 pm",
-    //         //         status: "0",
-    //         //         precio: "280"
-    //         //     },
-    //         // ],
-    //         horariosCanchaFutbol7: [
-    //             [
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "12:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "01:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "02:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "03:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "04:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "05:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //             ],
-    //             [
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "12:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "01:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "02:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "03:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "04:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "05:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //             ],
-    //             [
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "12:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "01:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "02:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "03:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "04:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "05:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //             ],
-    //             [
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 am",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "12:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "01:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "02:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "03:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "04:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "05:00 pm",
-    //                     status: "0",
-    //                     price: 60
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "06:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "07:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "08:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "09:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "10:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //                 {
-    //                     type: "futbol7",
-    //                     value: "11:00 pm",
-    //                     status: "0",
-    //                     price: 80
-    //                 },
-    //             ],
-    //         ]
-    //         // horariosCancha2: [
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "12:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "01:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "02:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "03:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "04:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "05:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         // ],
-    //         // horariosCancha3: [
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "12:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "01:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "02:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "03:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "04:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "05:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         // ],
-    //         // horariosCancha4: [
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 am",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "12:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "01:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "02:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "03:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "04:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "05:00 pm",
-    //         //         status: false,
-    //         //         price: 60
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "06:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "07:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "08:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "09:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "10:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         //     {
-    //         //         type: "futbol7",
-    //         //         value: "11:00 pm",
-    //         //         status: false,
-    //         //         price: 80
-    //         //     },
-    //         // ],
+    //         horariosPlantilla: getValues()?.horariosAll?.concat(getValues()?.horariosfutbol7cancha1?.concat(getValues()?.horariosfutbol7cancha2)?.concat(getValues()?.horariosfutbol7cancha3)?.concat(getValues()?.horariosfutbol7cancha4))
     //     })
     // }, [])
+
+    console.log("getValues: ", getValues()?.horariosPlantilla)
 
     const [pasoActual, setPasoActual] = useState<Paso>("modalidad")
     const [modalidadSeleccionada, setModalidadSeleccionada] = useState<Modalidad | null>(null)
@@ -1104,7 +228,8 @@ export default function SeleccionarCancha() {
             console.log("responsefuianl: ", response)
             if (response?.data?.length > 0) {
                 console.log("entre1")
-                setValue(`horariosCanchaFutbol7`, response?.data?.sort((a: any, b: any) => {
+
+                setValue("horariosfutbol7cancha1", response?.data?.[0]?.length > 0 ? response?.data?.[0]?.sort((a: any, b: any) => {
                     const parseTime = (str: any) => {
                         const [time, meridiem] = str.split(" ");
                         let [hours, minutes] = time.split(":").map(Number);
@@ -1120,7 +245,569 @@ export default function SeleccionarCancha() {
                     };
 
                     return parseTime(a.horario) - parseTime(b.horario);
-                }))
+                }) : [
+                    {
+                        type: "futbol7",
+                        horario: "06:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "12:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "01:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "02:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "03:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "04:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "05:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "06:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "1",
+                    },
+                ])
+
+                setValue("horariosfutbol7cancha2", response?.data?.[1]?.length > 0 ? response?.data?.[1]?.sort((a: any, b: any) => {
+                    const parseTime = (str: any) => {
+                        const [time, meridiem] = str.split(" ");
+                        let [hours, minutes] = time.split(":").map(Number);
+
+                        if (meridiem.toLowerCase() === "pm" && hours !== 12) {
+                            hours += 12;
+                        }
+                        if (meridiem.toLowerCase() === "am" && hours === 12) {
+                            hours = 0;
+                        }
+
+                        return hours * 60 + minutes;
+                    };
+
+                    return parseTime(a.horario) - parseTime(b.horario);
+                }) : [
+                    {
+                        type: "futbol7",
+                        horario: "06:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "12:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "01:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "02:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "03:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "04:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "05:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "06:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "2",
+                    },
+                ])
+
+                setValue("horariosfutbol7cancha3", response?.data?.[2]?.length > 0 ? response?.data?.[2]?.sort((a: any, b: any) => {
+                    const parseTime = (str: any) => {
+                        const [time, meridiem] = str.split(" ");
+                        let [hours, minutes] = time.split(":").map(Number);
+
+                        if (meridiem.toLowerCase() === "pm" && hours !== 12) {
+                            hours += 12;
+                        }
+                        if (meridiem.toLowerCase() === "am" && hours === 12) {
+                            hours = 0;
+                        }
+
+                        return hours * 60 + minutes;
+                    };
+
+                    return parseTime(a.horario) - parseTime(b.horario);
+                }) : [
+                    {
+                        type: "futbol7",
+                        horario: "06:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "12:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "01:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "02:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "03:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "04:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "05:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "06:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "3",
+                    },
+                ])
+
+                setValue("horariosfutbol7cancha4", response?.data?.[3]?.length > 0 ? response?.data?.[3]?.sort((a: any, b: any) => {
+                    const parseTime = (str: any) => {
+                        const [time, meridiem] = str.split(" ");
+                        let [hours, minutes] = time.split(":").map(Number);
+
+                        if (meridiem.toLowerCase() === "pm" && hours !== 12) {
+                            hours += 12;
+                        }
+                        if (meridiem.toLowerCase() === "am" && hours === 12) {
+                            hours = 0;
+                        }
+
+                        return hours * 60 + minutes;
+                    };
+
+                    return parseTime(a.horario) - parseTime(b.horario);
+                }) : [
+                    {
+                        type: "futbol7",
+                        horario: "06:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 am",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "12:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "01:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "02:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "03:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "04:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "05:00 pm",
+                        status: "0",
+                        precio: "60",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "06:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "07:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "08:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "09:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "10:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                    {
+                        type: "futbol7",
+                        horario: "11:00 pm",
+                        status: "0",
+                        precio: "100",
+                        cancha: "4",
+                    },
+                ])
             }
             else {
                 console.log("entre2")
@@ -1130,109 +817,109 @@ export default function SeleccionarCancha() {
                             type: "futbol7",
                             value: "06:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "12:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "01:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "02:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "03:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "04:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "05:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "06:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                     ],
                     [
@@ -1240,109 +927,109 @@ export default function SeleccionarCancha() {
                             type: "futbol7",
                             value: "06:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "12:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "01:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "02:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "03:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "04:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "05:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "06:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                     ],
                     [
@@ -1350,109 +1037,109 @@ export default function SeleccionarCancha() {
                             type: "futbol7",
                             value: "06:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "12:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "01:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "02:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "03:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "04:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "05:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "06:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                     ],
                     [
@@ -1460,109 +1147,109 @@ export default function SeleccionarCancha() {
                             type: "futbol7",
                             value: "06:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 am",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "12:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "01:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "02:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "03:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "04:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "05:00 pm",
                             status: "0",
-                            price: 60
+                            precio: "60"
                         },
                         {
                             type: "futbol7",
                             value: "06:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "07:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "08:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "09:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "10:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                         {
                             type: "futbol7",
                             value: "11:00 pm",
                             status: "0",
-                            price: 80
+                            precio: "100"
                         },
                     ],
                 ])
@@ -1575,109 +1262,109 @@ export default function SeleccionarCancha() {
                         type: "futbol7",
                         value: "06:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "12:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "01:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "02:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "03:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "04:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "05:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "06:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                 ],
                 [
@@ -1685,109 +1372,109 @@ export default function SeleccionarCancha() {
                         type: "futbol7",
                         value: "06:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "12:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "01:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "02:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "03:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "04:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "05:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "06:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                 ],
                 [
@@ -1795,109 +1482,109 @@ export default function SeleccionarCancha() {
                         type: "futbol7",
                         value: "06:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "12:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "01:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "02:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "03:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "04:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "05:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "06:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                 ],
                 [
@@ -1905,109 +1592,109 @@ export default function SeleccionarCancha() {
                         type: "futbol7",
                         value: "06:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 am",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "12:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "01:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "02:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "03:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "04:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "05:00 pm",
                         status: "0",
-                        price: 60
+                        precio: "60"
                     },
                     {
                         type: "futbol7",
                         value: "06:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "07:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "08:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "09:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "10:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                     {
                         type: "futbol7",
                         value: "11:00 pm",
                         status: "0",
-                        price: 80
+                        precio: "100"
                     },
                 ],
             ])
@@ -2016,9 +1703,11 @@ export default function SeleccionarCancha() {
     useEffect(() => {
         if (pasoActual == "campo" && getValues()?.typeCancha == "futbol11") {
             fetchHorarios(moment.tz(new Date(), "America/Lima").format())
+            fetchHorariosFutbol7(moment.tz(new Date(), "America/Lima").format())
         }
         else if (pasoActual == "campo" && getValues()?.typeCancha == "futbol7") {
             console.log("entre4")
+            fetchHorarios(moment.tz(new Date(), "America/Lima").format())
             fetchHorariosFutbol7(moment.tz(new Date(), "America/Lima").format())
         }
     }, [pasoActual])
@@ -2058,46 +1747,87 @@ export default function SeleccionarCancha() {
                             : null,
             }
         })
-        const jsonSend7 = getValues()?.horariosCanchaFutbol7?.map((horarioAll: any, indexAll: any) => {
-            return horarioAll?.map((horario: any, index: any) => {
-                return {
-                    ...horario,
-                    fecha: moment.tz(fechaSeleccionada, "America/Lima").format(),
-                    cancha: (indexAll + 1)?.toString(),
-                    status: horario?.status == "1" ? "2" : horario?.status,
-                    horario: horario?.horario,
-                    precio: horario?.precio?.toString(),
-                    documentoUsuario:
-                        (horario?.documentoUsuario !== null && horario?.documentoUsuario !== undefined && horario?.documentoUsuario !== "")
-                            ? horario?.documentoUsuario
-                            : horario?.status == "1" ? data.documentoUsuario
-                                : null,
-                    nombres:
-                        (horario?.nombres !== null && horario?.nombres !== undefined && horario?.nombres !== "")
-                            ? horario.nombres
-                            : horario?.status == "1" ? data?.nombres
-                                : null,
-                    apellidoPaterno:
-                        (horario?.apellidoPaterno !== null && horario?.apellidoPaterno !== undefined && horario?.apellidoPaterno !== "")
-                            ? horario.apellidoPaterno
-                            : horario?.status == "1" ? data?.apellidoPaterno
-                                : null,
-                    apellidoMaterno:
-                        (horario?.apellidoMaterno !== null && horario?.apellidoMaterno !== undefined && horario?.apellidoMaterno !== "")
-                            ? horario.apellidoMaterno
-                            : horario?.status == "1" ? data?.apellidoMaterno
-                                : null,
-                }
-            })
+        const jsonSend7 = getValues()?.horariosfutbol7cancha1?.concat(getValues()?.horariosfutbol7cancha2)?.concat(getValues()?.horariosfutbol7cancha3)?.concat(getValues()?.horariosfutbol7cancha4)?.map((horario: any, index: any) => {
+            return {
+                fecha: moment.tz(fechaSeleccionada, "America/Lima").format(),
+                cancha: horario?.cancha,
+                status: horario?.status == "1" ? "2" : horario?.status,
+                horario: horario?.horario,
+                precio: horario?.precio?.toString(),
+                documentoUsuario:
+                    (horario?.documentoUsuario !== null && horario?.documentoUsuario !== undefined && horario?.documentoUsuario !== "")
+                        ? horario?.documentoUsuario
+                        : horario?.status == "1" ? data.documentoUsuario
+                            : null,
+                nombres:
+                    (horario?.nombres !== null && horario?.nombres !== undefined && horario?.nombres !== "")
+                        ? horario.nombres
+                        : horario?.status == "1" ? data?.nombres
+                            : null,
+                apellidoPaterno:
+                    (horario?.apellidoPaterno !== null && horario?.apellidoPaterno !== undefined && horario?.apellidoPaterno !== "")
+                        ? horario.apellidoPaterno
+                        : horario?.status == "1" ? data?.apellidoPaterno
+                            : null,
+                apellidoMaterno:
+                    (horario?.apellidoMaterno !== null && horario?.apellidoMaterno !== undefined && horario?.apellidoMaterno !== "")
+                        ? horario.apellidoMaterno
+                        : horario?.status == "1" ? data?.apellidoMaterno
+                            : null,
+            }
         })
         console.log("jsonSend11: ", jsonSend11);
         console.log("jsonSend7: ", jsonSend7);
-        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaFutbol`;
+        const url1 = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaFutbol`;
+        const url2 = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaFutbol7`;
         if (modalidadSeleccionada === "futbol11" || getValues()?.typeCancha === "futbol11") {
             console.log("entre1")
             try {
                 const response = await apiCall({
-                    method: "post", endpoint: url, data: jsonSend11
+                    method: "post", endpoint: url1, data: jsonSend11
+                })
+                console.log("responsefuianl: ", response)
+
+                if (response.status === 201) {
+                    Swal.fire({
+                        title: "¡Reserva completa!",
+                        text: "¡Se ha completado la reserva!",
+                        icon: "success",
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        // cancelButtonText: 'No',
+                        showLoaderOnConfirm: true,
+                        allowOutsideClick: false,
+                        preConfirm: () => {
+                            setPasoActual("modalidad")
+                            reset()
+                        },
+                    });
+                }
+            } catch (error) {
+                console.log("error: ", error)
+                Swal.fire({
+                    title: "¡Ocurrio un error!",
+                    text: "¡Se ha completado la reserva!",
+                    icon: "error",
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    // cancelButtonText: 'No',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false,
+                    preConfirm: () => {
+                        // setPasoActual("modalidad")
+                    },
+                });
+            }
+        }
+        if (modalidadSeleccionada === "futbol7" || getValues()?.typeCancha === "futbol7") {
+            console.log("entre1")
+            try {
+                const response = await apiCall({
+                    method: "post", endpoint: url2, data: jsonSend7
                 })
                 console.log("responsefuianl: ", response)
 
@@ -2181,6 +1911,7 @@ export default function SeleccionarCancha() {
                         getValues={getValues}
                         setValue={setValue}
                         fetchHorarios={fetchHorarios}
+                        fetchHorariosFutbol7={fetchHorariosFutbol7}
                     />
                 )}
 

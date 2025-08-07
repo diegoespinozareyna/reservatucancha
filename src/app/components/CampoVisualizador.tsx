@@ -17,7 +17,7 @@ interface CampoVisualizadorProps {
     onBack: () => void
 }
 
-export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack, handleHorarioSelect, getValues, setValue, fetchHorarios }: any) => {
+export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack, handleHorarioSelect, getValues, setValue, fetchHorarios, fetchHorariosFutbol7 }: any) => {
 
     const refScrollTarget1 = useRef<HTMLDivElement>(null);
     const refScrollTarget2 = useRef<HTMLDivElement>(null);
@@ -37,19 +37,16 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack,
     return (
         <div className="space-y-4">
             <div className="fixed top-0 left-0 p-1 bg-white z-50 shadow-md opacity-50 !rounded-full">
-                {
-                    getValues(`horariosAll`) &&
-                    <IconButton
-                        className="rounded-full"
-                        onClick={() => window.scrollTo({
-                            top: 1,
-                            left: 1,
-                            behavior: "smooth",
-                        })}
-                    >
-                        <ChevronUp className="rounded-full" color="green" />
-                    </IconButton>
-                }
+                <IconButton
+                    className="rounded-full"
+                    onClick={() => window.scrollTo({
+                        top: 1,
+                        left: 1,
+                        behavior: "smooth",
+                    })}
+                >
+                    <ChevronUp className="rounded-full" color="green" />
+                </IconButton>
             </div>
             <div className=" flex flex-col justify-center items-center">
                 <div className="text-center flex justify-between items-center mb-6 gap-2 w-full">
@@ -156,6 +153,7 @@ export const CampoVisualizador = ({ modalidad, fecha, horario, onSelect, onBack,
                 refScrollTarget3={refScrollTarget3}
                 refScrollTarget4={refScrollTarget4}
                 handleScroll={handleScroll}
+                fetchHorariosFutbol7={fetchHorariosFutbol7}
             // onBack={() => setPasoActual("campo")}
             />
         </div >

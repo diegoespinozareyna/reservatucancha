@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Calendar, ChevronLeft } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { Button } from "@mui/material"
+import moment from "moment-timezone"
 
 type Modalidad = "futbol11" | "futbol7"
 
@@ -14,7 +15,7 @@ interface HorarioSelectorProps {
     onBack: () => void
 }
 
-export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, setValue, fetchHorarios, refScrollTarget1, refScrollTarget2, refScrollTarget3, refScrollTarget4, handleScroll }: any) {
+export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, setValue, fetchHorarios, refScrollTarget1, refScrollTarget2, refScrollTarget3, refScrollTarget4, handleScroll, fetchHorariosFutbol7 }: any) {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date())
 
     const horarios = [
@@ -82,12 +83,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                     key={index}
                                     onClick={() => {
                                         setFechaSeleccionada(fecha)
-                                        if (getValues()?.typeCancha == "futbol11") {
-                                            fetchHorarios(fecha)
+                                        if (getValues()?.typeCancha == "futbol11" || modalidad == "futbol11") {
+                                            fetchHorarios(moment.tz(fecha, "America/Lima").format())
+                                            fetchHorariosFutbol7(moment.tz(fecha, "America/Lima").format())
                                         }
-                                        else {
+                                        else if (getValues()?.typeCancha == "futbol7") {
                                             console.log("entre3")
-                                            setValue(`horariosAll`, [])
+                                            fetchHorarios(moment.tz(fecha, "America/Lima").format())
+                                            fetchHorariosFutbol7(moment.tz(fecha, "America/Lima").format())
                                         }
                                     }}
                                     className={`flex-shrink-0 p-3 rounded-lg border-2 text-center min-w-[60px] ${esSeleccionada ? "border-green-500 bg-green-50" : "border-gray-200 hover:border-gray-300"
@@ -135,8 +138,12 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                     return (
                                         <button
                                             key={horario}
-                                            className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${getValues(`horariosAll`)?.[index]?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(getValues()?.horariosAll?.[index]?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
-                                            disabled={getValues(`horariosAll`)?.[index]?.status == "2"}
+                                            className={`
+                                                relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 
+                                                ${getValues(`horariosAll`)?.[index]?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} 
+                                                ${(getValues()?.horariosAll?.[index]?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} 
+                                                cursor-pointer`}
+                                            disabled={(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2")}
                                             onClick={() => {
                                                 if (getValues(`horariosAll`)?.[index]?.status == "1") {
                                                     setValue(`horariosAll.${index}`, {
@@ -169,7 +176,7 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                     {`S/. ${Number(getValues()?.horariosAll?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
                                             </div>
-                                            {getValues(`horariosAll`)?.[index]?.status == "2" && (
+                                            {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2") && (
                                                 <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
                                                     Ocupado
                                                 </div>
@@ -199,68 +206,241 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
             {
                 modalidad === "futbol7" &&
                 <div className="mb-15">
-                    {
-                        ["cancha1", "cancha2", "cancha3", "cancha4"].map((cancha, indexAll) => {
-                            return (
-                                <>
-                                    <div ref={indexAll == 0 ? refScrollTarget1 : indexAll == 1 ? refScrollTarget2 : indexAll == 2 ? refScrollTarget3 : refScrollTarget4} className=" rounded-lg border-2 border-gray-200 p-4 bg-[#fff] mt-4">
-                                        <div>
-                                            <div className="text-lg mb-3 font-bold">{`Horarios Disponibles Cancha ${indexAll + 1}:`}</div>
-                                        </div>
-                                        <div>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {horarios.map((horario, index) => {
-                                                    const estaOcupado = horariosOcupados.includes(horario)
+                    <div ref={refScrollTarget1} className=" rounded-lg border-2 border-gray-200 p-4 bg-[#fff] mt-4">
+                        <div>
+                            <div>
+                                <div className="text-lg mb-3 font-bold">{`Horarios Disponibles Cancha ${"1"}:`}</div>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                {getValues()?.horariosfutbol7cancha1?.map((horario: any, index: any) => {
+                                    // const estaOcupado = horariosOcupados.includes(horario)
 
-                                                    return (
-                                                        <button
-                                                            key={horario}
-                                                            className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${getValues(`horariosAll`)?.[index]?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(getValues()?.horariosCanchaFutbol7?.[indexAll]?.[index]?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
-                                                            disabled={getValues(`horariosAll`)?.[index]?.status == "2"}
-                                                            onClick={() => {
-                                                                if (getValues()?.horariosCanchaFutbol7?.[indexAll]?.[index]?.status == "1") {
-                                                                    setValue(`horariosCanchaFutbol7.${indexAll}.${index}`, {
-                                                                        ...getValues()?.horariosCanchaFutbol7?.[indexAll]?.[index],
-                                                                        value: horario,
-                                                                        status: "0"
-                                                                    })
-                                                                }
-                                                                else {
-                                                                    setValue(`horariosCanchaFutbol7.${indexAll}.${index}`, {
-                                                                        ...getValues()?.horariosCanchaFutbol7?.[indexAll]?.[index],
-                                                                        value: horario,
-                                                                        status: "1"
-                                                                    })
-                                                                }
-                                                                // else if (getValues(`horariosAll`)?.[index]?.status == null || getValues(`horariosAll`)?.[index]?.status == undefined) {
-                                                                //     setValue(`horariosAll.${index}`, {
-                                                                //         value: horario,
-                                                                //         status: false
-                                                                //     })
-                                                                // }
-                                                            }}
-                                                        // className="h-12 relative"
-                                                        >
-                                                            {horario}
-                                                            {getValues(`horariosAll`)?.[index]?.status == "2" && (
-                                                                <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                                    Ocupado
-                                                                </div>
-                                                            )}
-                                                        </button>
-                                                    )
-                                                })}
-                                            </div>
+                                    return (
+                                        <>
+                                            <button
+                                                key={horario?.horario}
+                                                className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${horario?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(horario?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
+                                                disabled={(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2")}
+                                                onClick={() => {
+                                                    if (horario?.status == "1") {
+                                                        setValue(`horariosfutbol7cancha1.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "0"
+                                                        })
+                                                    }
+                                                    else {
+                                                        console.log(getValues()?.horariosfutbol7cancha1?.[index])
+                                                        console.log(horario)
+                                                        setValue(`horariosfutbol7cancha1.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "1"
+                                                        })
+                                                    }
+                                                    // else if (getValues(`horariosAll`)?.[index]?.status == null || getValues(`horariosAll`)?.[index]?.status == undefined) {
+                                                    //     setValue(`horariosAll.${index}`, {
+                                                    //         value: horario,
+                                                    //         status: false
+                                                    //     })
+                                                    // }
+                                                }}
+                                            // className="h-12 relative"
+                                            >
+                                                {horario?.horario}
+                                                <div className="text-[11px] text-gray-600">
+                                                    {`S/. ${Number(getValues()?.horariosfutbol7cancha1?.[index]?.precio)?.toFixed(2)}`}
+                                                </div>
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado
+                                                    </div>
+                                                )}
+                                            </button>
+                                        </>
+                                    )
+                                })}
+                            </div>
 
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        })
-                    }
+                        </div>
+                    </div>
+                    <div ref={refScrollTarget2} className=" rounded-lg border-2 border-gray-200 p-4 bg-[#fff] mt-4">
+                        <div>
+                            <div>
+                                <div className="text-lg mb-3 font-bold">{`Horarios Disponibles Cancha ${"2"}:`}</div>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                {getValues()?.horariosfutbol7cancha2?.map((horario: any, index: any) => {
+                                    // const estaOcupado = horariosOcupados.includes(horario)
+
+                                    return (
+                                        <>
+                                            <button
+                                                key={horario?.horario}
+                                                className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${horario?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(horario?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
+                                                disabled={(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2")}
+                                                onClick={() => {
+                                                    if (horario?.status == "1") {
+                                                        setValue(`horariosfutbol7cancha2.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "0"
+                                                        })
+                                                    }
+                                                    else {
+                                                        console.log(getValues()?.horariosfutbol7cancha1?.[index])
+                                                        console.log(horario)
+                                                        setValue(`horariosfutbol7cancha2.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "1"
+                                                        })
+                                                    }
+                                                    // else if (getValues(`horariosAll`)?.[index]?.status == null || getValues(`horariosAll`)?.[index]?.status == undefined) {
+                                                    //     setValue(`horariosAll.${index}`, {
+                                                    //         value: horario,
+                                                    //         status: false
+                                                    //     })
+                                                    // }
+                                                }}
+                                            // className="h-12 relative"
+                                            >
+                                                {horario?.horario}
+                                                <div className="text-[11px] text-gray-600">
+                                                    {`S/. ${Number(getValues()?.horariosfutbol7cancha2?.[index]?.precio)?.toFixed(2)}`}
+                                                </div>
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado
+                                                    </div>
+                                                )}
+                                            </button>
+                                        </>
+                                    )
+                                })}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ref={refScrollTarget3} className=" rounded-lg border-2 border-gray-200 p-4 bg-[#fff] mt-4">
+                        <div>
+                            <div>
+                                <div className="text-lg mb-3 font-bold">{`Horarios Disponibles Cancha ${"3"}:`}</div>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                {getValues()?.horariosfutbol7cancha3?.map((horario: any, index: any) => {
+                                    // const estaOcupado = horariosOcupados.includes(horario)
+
+                                    return (
+                                        <>
+                                            <button
+                                                key={horario?.horario}
+                                                className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${horario?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(horario?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
+                                                disabled={(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2")}
+                                                onClick={() => {
+                                                    if (horario?.status == "1") {
+                                                        setValue(`horariosfutbol7cancha3.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "0"
+                                                        })
+                                                    }
+                                                    else {
+                                                        console.log(getValues()?.horariosfutbol7cancha3?.[index])
+                                                        console.log(horario)
+                                                        setValue(`horariosfutbol7cancha3.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "1"
+                                                        })
+                                                    }
+                                                    // else if (getValues(`horariosAll`)?.[index]?.status == null || getValues(`horariosAll`)?.[index]?.status == undefined) {
+                                                    //     setValue(`horariosAll.${index}`, {
+                                                    //         value: horario,
+                                                    //         status: false
+                                                    //     })
+                                                    // }
+                                                }}
+                                            // className="h-12 relative"
+                                            >
+                                                {horario?.horario}
+                                                <div className="text-[11px] text-gray-600">
+                                                    {`S/. ${Number(getValues()?.horariosfutbol7cancha3?.[index]?.precio)?.toFixed(2)}`}
+                                                </div>
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado
+                                                    </div>
+                                                )}
+                                            </button>
+                                        </>
+                                    )
+                                })}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ref={refScrollTarget4} className=" rounded-lg border-2 border-gray-200 p-4 bg-[#fff] mt-4">
+                        <div>
+                            <div>
+                                <div className="text-lg mb-3 font-bold">{`Horarios Disponibles Cancha ${"4"}:`}</div>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                {getValues()?.horariosfutbol7cancha4?.map((horario: any, index: any) => {
+                                    // const estaOcupado = horariosOcupados.includes(horario)
+
+                                    return (
+                                        <>
+                                            <button
+                                                key={horario?.horario}
+                                                className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${horario?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(horario?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
+                                                disabled={(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2")}
+                                                onClick={() => {
+                                                    if (horario?.status == "1") {
+                                                        setValue(`horariosfutbol7cancha4.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "0"
+                                                        })
+                                                    }
+                                                    else {
+                                                        console.log(getValues()?.horariosfutbol7cancha4?.[index])
+                                                        console.log(horario)
+                                                        setValue(`horariosfutbol7cancha4.${index}`, {
+                                                            ...horario,
+                                                            horario: horario?.horario,
+                                                            status: "1"
+                                                        })
+                                                    }
+                                                    // else if (getValues(`horariosAll`)?.[index]?.status == null || getValues(`horariosAll`)?.[index]?.status == undefined) {
+                                                    //     setValue(`horariosAll.${index}`, {
+                                                    //         value: horario,
+                                                    //         status: false
+                                                    //     })
+                                                    // }
+                                                }}
+                                            // className="h-12 relative"
+                                            >
+                                                {horario?.horario}
+                                                <div className="text-[11px] text-gray-600">
+                                                    {`S/. ${Number(getValues()?.horariosfutbol7cancha4?.[index]?.precio)?.toFixed(2)}`}
+                                                </div>
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado
+                                                    </div>
+                                                )}
+                                            </button>
+                                        </>
+                                    )
+                                })}
+                            </div>
+
+                        </div>
+                    </div>
                     <div className="fixed bottom-0 left-0 w-full p-4 bg-white z-50 shadow-md">
                         {
-                            getValues()?.horariosCanchaFutbol7 &&
+                            (getValues()?.horariosfutbol7cancha1 || getValues()?.horariosfutbol7cancha2 || getValues()?.horariosfutbol7cancha3 || getValues()?.horariosfutbol7cancha4) &&
                             <Button
                                 variant="contained"
                                 color="success"

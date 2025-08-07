@@ -62,32 +62,92 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
                 </div>
 
                 {/* Resumen de la reserva */}
-                <div className="mt-8 border-1 border-gray-200 p-4 rounded-lg bg-white">
-                    <div className="mb-3">
-                        <div className="text-base">Resumen de Reserva:</div>
+                {
+                    getValues()?.typeCancha == "futbol11" &&
+                    <div className="mt-8 border-1 border-gray-200 p-4 rounded-lg bg-white">
+                        <div className="mb-3">
+                            <div className="text-base">Resumen de Reserva:</div>
+                        </div>
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Modalidad:</span>
+                                <button className="bg-green-100 text-green-700 hover:bg-green-200 rounded-lg px-2 py-1 text-xs">
+                                    {modalidad === "futbol11" ? "Fútbol 11 - Cancha Completa" : "Fútbol 7"}
+                                    {seccion && modalidad !== "futbol11" && ` - Cancha ${seccion}`}
+                                </button>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Fecha:</span>
+                                <span className="font-medium">{fecha.toLocaleDateString()}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Horario:</span>
+                                <span className="font-medium">{getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t">
+                                <span className="font-medium">Total:</span>
+                                <span className="text-lg font-bold text-green-600">S/. {getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString()} soles</span>
+                            </div>
+                        </div>
                     </div>
-                    <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Modalidad:</span>
-                            <button className="bg-green-100 text-green-700 hover:bg-green-200 rounded-lg px-2 py-1 text-xs">
-                                {modalidad === "futbol11" ? "Fútbol 11 - Cancha Completa" : "Fútbol 7"}
-                                {seccion && modalidad !== "futbol11" && ` - Cancha ${seccion}`}
-                            </button>
+                }
+                {
+                    getValues()?.typeCancha == "futbol7" &&
+                    <div className="mt-8 border-1 border-gray-200 p-4 rounded-lg bg-white">
+                        <div className="mb-3">
+                            <div className="text-base">Resumen de Reserva:</div>
                         </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Fecha:</span>
-                            <span className="font-medium">{fecha.toLocaleDateString()}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Horario:</span>
-                            <span className="font-medium">{getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
-                        </div>
-                        <div className="flex justify-between items-center pt-2 border-t">
-                            <span className="font-medium">Total:</span>
-                            <span className="text-lg font-bold text-green-600">S/. {getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString()} soles</span>
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Modalidad:</span>
+                                <button className="bg-green-100 text-green-700 hover:bg-green-200 rounded-lg px-2 py-1 text-xs">
+                                    {modalidad === "futbol11" ? "Fútbol 11 - Cancha Completa" : "Fútbol 7"}
+                                    {seccion && modalidad !== "futbol11" && ` - Cancha ${seccion}`}
+                                </button>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Fecha:</span>
+                                <span className="font-medium">{fecha.toLocaleDateString()}</span>
+                            </div>
+                            {
+                                getValues()?.horariosfutbol7cancha1?.some((x: any) => x.status == "1") &&
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-gray-600">Horario(s) Cancha 1:</span>
+                                    <span className="font-medium">{getValues()?.horariosfutbol7cancha1?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                                </div>
+                            }
+                            {
+                                getValues()?.horariosfutbol7cancha2?.some((x: any) => x.status == "1") &&
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-gray-600">Horario(s) Cancha 2:</span>
+                                    <span className="font-medium">{getValues()?.horariosfutbol7cancha2?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                                </div>
+                            }
+                            {
+                                getValues()?.horariosfutbol7cancha3?.some((x: any) => x.status == "1") &&
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-gray-600">Horario(s) Cancha 3:</span>
+                                    <span className="font-medium">{getValues()?.horariosfutbol7cancha3?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                                </div>
+                            }
+                            {
+                                getValues()?.horariosfutbol7cancha4?.some((x: any) => x.status == "1") &&
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-gray-600">Horario(s) Cancha 4:</span>
+                                    <span className="font-medium">{getValues()?.horariosfutbol7cancha4?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                                </div>
+                            }
+                            {/* <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-600">Horario:</span>
+                                <span className="font-medium">{getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", ")}</span>
+                            </div> */}
+                            <div className="flex justify-between items-center pt-2 border-t">
+                                <span className="font-medium">Total:</span>
+                                <span className="text-lg font-bold text-green-600">S/. {getValues()?.horariosfutbol7cancha1?.concat(getValues()?.horariosfutbol7cancha2)?.concat(getValues()?.horariosfutbol7cancha3)?.concat(getValues()?.horariosfutbol7cancha4)?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString()} soles</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
 
                 {/* Formulario */}
                 <div>
