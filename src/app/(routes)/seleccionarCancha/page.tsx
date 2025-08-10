@@ -6,6 +6,10 @@ import { HorarioSelector } from "@/app/components/HorarioSelector";
 import { ModalidadSelector } from "@/app/components/TipoCancha";
 import { Apis } from "@/app/configs/proyecto/proyectCurrent";
 import useApi from "@/app/hooks/fetchData/useApi";
+import { IconButton } from "@mui/material";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { LayoutDashboard, LogIn, PersonStanding, User, User2, Users } from "lucide-react";
 import moment from "moment-timezone";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,6 +26,8 @@ export default function SeleccionarCancha() {
     const { getValues, setValue, watch, reset, handleSubmit, control } = useForm()
 
     const { apiCall, loading, error } = useApi()
+
+    const [user, setUser] = useState<any>(null);
 
     const formAll = watch()
     console.log("formAll: ", formAll)
@@ -48,6 +54,17 @@ export default function SeleccionarCancha() {
         setModalidadSeleccionada(modalidad)
         setPasoActual("campo")
     }
+
+    useEffect(() => {
+        try {
+            const token = localStorage.getItem('auth-token');
+            const decoded: any = jwtDecode(token as string);
+            console.log('Datos del usuario:', decoded?.user);
+            setUser(decoded?.user);
+        } catch (error) {
+            setUser(null);
+        }
+    }, [])
 
     const handleHorarioSelect = (fecha: Date, horario: string) => {
         setFechaSeleccionada(fecha)
@@ -1718,6 +1735,7 @@ export default function SeleccionarCancha() {
         console.log("data.apellidoPaterno: ", data.apellidoPaterno);
         console.log("data.apellidoMaterno: ", data.apellidoMaterno);
         console.log("data.celular: ", data.celular);
+        const nOperacionAll = new Date().getTime();
         const jsonSend11 = getValues()?.horariosAll?.map((horario: any, index: any) => {
             return {
                 fecha: moment.tz(fechaSeleccionada, "America/Lima").format(),
@@ -1783,28 +1801,107 @@ export default function SeleccionarCancha() {
         if (modalidadSeleccionada === "futbol11" || getValues()?.typeCancha === "futbol11") {
             console.log("entre1")
             try {
-                const response = await apiCall({
-                    method: "post", endpoint: url1, data: jsonSend11
-                })
-                console.log("responsefuianl: ", response)
 
-                if (response.status === 201) {
-                    Swal.fire({
-                        title: "¡Reserva completa!",
-                        text: "¡Se ha completado la reserva!",
-                        icon: "success",
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'OK',
-                        // cancelButtonText: 'No',
-                        showLoaderOnConfirm: true,
-                        allowOutsideClick: false,
-                        preConfirm: () => {
-                            setPasoActual("modalidad")
-                            reset()
-                        },
-                    });
+                const formData = new FormData();
+                formData.append("image", getValues()?.fileEvent);
+                const res = await axios.post(`${Apis.URL_APOIMENT_BACKEND_DEV2}/upload`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                if (res.status == 200) {
+                    const response = await apiCall({
+                        method: "post", endpoint: url1, data: jsonSend11
+                    })
+                    console.log("responsefuianl: ", response)
+
+                    if (response.status === 201) {
+                        Swal.fire({
+                            title: "¡Reserva completa!",
+                            text: "¡Se ha completado la reserva!",
+                            icon: "success",
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK',
+                            // cancelButtonText: 'No',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: false,
+                            preConfirm: () => {
+                                setPasoActual("modalidad")
+                                reset()
+                            },
+                        });
+                    }
+
+                    const urlPagoUrl = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaPersonaFutbol`
+
+                    const jsonSendReservaPersona = {
+                        fecha: moment.tz(fechaSeleccionada, "America/Lima").format(),
+                        status: "0",
+                        cancha0: getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        cancha1: "",
+                        cancha2: "",
+                        cancha3: "",
+                        cancha4: "",
+                        precio: getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString(),
+                        documentoUsuario: data.documentoUsuario,
+                        nombres: data?.nombres,
+                        apellidoPaterno: data?.apellidoPaterno,
+                        apellidoMaterno: data?.apellidoMaterno,
+                        urlPago: res?.data?.url,
+                        nOperacion: nOperacionAll,
+                    }
+
+                    const response2 = await apiCall({
+                        method: "post", endpoint: urlPagoUrl, data: jsonSendReservaPersona
+                    })
+                    console.log("responsefuianl: ", response2)
+
+                    if (response2.status === 201) {
+                        Swal.fire({
+                            title: "¡Reserva completa!",
+                            text: "¡Se ha completado la reserva!",
+                            icon: "success",
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK',
+                            // cancelButtonText: 'No',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: false,
+                            preConfirm: () => {
+                                setPasoActual("modalidad")
+                                reset()
+                            },
+                        });
+                    }
+
+                    const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/subirVoucherReservaFutbol`;
+
+                    const jsonSend = {
+                        conceptoPago: getValues()?.typeCancha,
+                        codPedido: data?._id,
+                        documentoUsuario: data?.documentoUsuario,
+                        estadoVerificacion: "0",
+                        fechaPago: moment.tz(fechaSeleccionada, "America/Lima").format(),
+                        fechaVerificacion: "",
+                        formaPago: getValues()?.formaPago,
+                        horarios: getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        monto: getValues()?.monto,
+                        nOperacion: nOperacionAll,
+                        observaciones: "",
+                        proyecto: Apis.PROYECTCURRENT,
+                        status: "0", // "0" pendiente, "1" aceptado, "2" rechazado
+                        url: res?.data?.url,
+                    }
+
+                    const response3 = await apiCall({
+                        method: 'post',
+                        endpoint: url,
+                        data: jsonSend
+                    })
+                    console.log("responsefuianl: ", response3)
                 }
+
             } catch (error) {
                 console.log("error: ", error)
                 Swal.fire({
@@ -1826,28 +1923,107 @@ export default function SeleccionarCancha() {
         if (modalidadSeleccionada === "futbol7" || getValues()?.typeCancha === "futbol7") {
             console.log("entre1")
             try {
-                const response = await apiCall({
-                    method: "post", endpoint: url2, data: jsonSend7
-                })
-                console.log("responsefuianl: ", response)
 
-                if (response.status === 201) {
-                    Swal.fire({
-                        title: "¡Reserva completa!",
-                        text: "¡Se ha completado la reserva!",
-                        icon: "success",
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'OK',
-                        // cancelButtonText: 'No',
-                        showLoaderOnConfirm: true,
-                        allowOutsideClick: false,
-                        preConfirm: () => {
-                            setPasoActual("modalidad")
-                            reset()
-                        },
-                    });
+                const formData = new FormData();
+                formData.append("image", getValues()?.fileEvent);
+                const res = await axios.post(`${Apis.URL_APOIMENT_BACKEND_DEV2}/upload`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                if (res.status == 200) {
+                    const response = await apiCall({
+                        method: "post", endpoint: url2, data: jsonSend7
+                    })
+                    console.log("responsefuianl: ", response)
+
+                    if (response.status === 201) {
+                        Swal.fire({
+                            title: "¡Reserva completa!",
+                            text: "¡Se ha completado la reserva!",
+                            icon: "success",
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK',
+                            // cancelButtonText: 'No',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: false,
+                            preConfirm: () => {
+                                setPasoActual("modalidad")
+                                reset()
+                            },
+                        });
+                    }
+
+                    const urlPagoUrl = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/reservaPersonaFutbol`
+
+                    const jsonSendReservaPersona = {
+                        fecha: moment.tz(fechaSeleccionada, "America/Lima").format(),
+                        status: "0",
+                        cancha0: "",
+                        cancha1: getValues()?.horariosfutbol7cancha1?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        cancha2: getValues()?.horariosfutbol7cancha2?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        cancha3: getValues()?.horariosfutbol7cancha3?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        cancha4: getValues()?.horariosfutbol7cancha4?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                        precio: getValues()?.horariosfutbol7cancha1?.concat(getValues()?.horariosfutbol7cancha2)?.concat(getValues()?.horariosfutbol7cancha3)?.concat(getValues()?.horariosfutbol7cancha4)?.filter((x: any) => x.status == "1")?.reduce((acum: any, item: any) => acum + Number(item.precio), 0).toLocaleString(),
+                        documentoUsuario: data.documentoUsuario,
+                        nombres: data?.nombres,
+                        apellidoPaterno: data?.apellidoPaterno,
+                        apellidoMaterno: data?.apellidoMaterno,
+                        urlPago: res?.data?.url,
+                        nOperacion: nOperacionAll,
+                    }
+
+                    const response2 = await apiCall({
+                        method: "post", endpoint: urlPagoUrl, data: jsonSendReservaPersona
+                    })
+                    console.log("responsefuianl: ", response2)
+
+                    if (response2.status === 201) {
+                        Swal.fire({
+                            title: "¡Reserva completa!",
+                            text: "¡Se ha completado la reserva!",
+                            icon: "success",
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK',
+                            // cancelButtonText: 'No',
+                            showLoaderOnConfirm: true,
+                            allowOutsideClick: false,
+                            preConfirm: () => {
+                                setPasoActual("modalidad")
+                                reset()
+                            },
+                        });
+                    }
+
+                    const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/subirVoucherReservaFutbol`;
+
+                    const jsonSend = {
+                        conceptoPago: getValues()?.typeCancha,
+                        codPedido: data?._id,
+                        documentoUsuario: data?.documentoUsuario,
+                        estadoVerificacion: "0",
+                        fechaPago: moment.tz(fechaSeleccionada, "America/Lima").format(),
+                        fechaVerificacion: "",
+                        formaPago: getValues()?.formaPago,
+                        monto: getValues()?.monto,
+                        nOperacion: nOperacionAll,
+                        observaciones: "",
+                        proyecto: Apis.PROYECTCURRENT,
+                        status: "0", // "0" pendiente, "1" aceptado, "2" rechazado
+                        url: res?.data?.url,
+                    }
+
+                    const response3 = await apiCall({
+                        method: 'post',
+                        endpoint: url,
+                        data: jsonSend
+                    })
+                    console.log("responsefuianl: ", response3)
+
                 }
+
             } catch (error) {
                 console.log("error: ", error)
                 Swal.fire({
@@ -1872,8 +2048,21 @@ export default function SeleccionarCancha() {
     return (
         <div className="font-sans text-slate-800 min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
             <div className="max-w-md mx-auto">
+                {
+                    pasoActual == "modalidad" &&
+                    <div className="w-full flex justify-end items-center gap-0 opacity-50 -mt-3 ml-3">
+                        <IconButton
+                            className="rounded-full !bg-green-100"
+                            onClick={() => {
+                                user == null ? router.push("/login") : router.push("/dashboard")
+                            }}
+                        >
+                            {user == null ? <LogIn className="rounded-full" color="gray" /> : <LayoutDashboard className="rounded-full" color="gray" />}
+                        </IconButton>
+                    </div>
+                }
                 {/* Header */}
-                <div className="text-center mb-6">
+                <div className="text-center mb-6 -mt-3">
                     <h1 className="text-2xl font-bold text-gray-900 mb-2 uppercase">⚽ Campo Deportivo</h1>
                     <p className="text-gray-600">Reserva tu cancha favorita</p>
                 </div>

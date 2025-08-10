@@ -16,7 +16,7 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                 {
                     dataComprarTicket?.map((item: any, index: any) => {
                         return (
-                            <>
+                            <div key={index}>
                                 {
                                     (item.type === "text" || item.type === "number" || item.type === "date") &&
                                     <div className="mt-0">
@@ -32,6 +32,7 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                                                     size="small"
                                                     type={item.type === "date" ? "datetime-local" : "text"}
                                                     fullWidth
+                                                    required={item.required}
                                                     // disabled={item.disabled}
                                                     InputLabelProps={{
                                                         shrink: true,
@@ -108,12 +109,12 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                                                 }
                                             }}
                                             render={({ field, fieldState }) => (
-                                                <div className="flex flex-row gap-2 justify-start items-start">
+                                                <div className="flex flex-col gap-2 justify-start items-start">
                                                     <div>
-                                                        {
+                                                        {/* {
                                                             userOld &&
                                                             <div>{"El Usuario es Antiguo debe subir voucher de Manera Obligatoria:"}</div>
-                                                        }
+                                                        } */}
                                                         <Button
                                                             variant="contained"
                                                             component="label"
@@ -138,13 +139,23 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                                                     </div>
 
                                                     {getValues(`${item.name}`) !== "" && getValues(`${item.name}`) !== undefined && getValues(`${item.name}`) !== null && (
-                                                        <IconButton
+                                                        // <IconButton
+                                                        //     onClick={() => window.open(getValues(`${item.name}`)?.fileUrl ?? getValues(`${item.name}`), "_blank")}
+                                                        //     color="primary"
+                                                        //     aria-label="Ver imagen"
+                                                        // >
+                                                        //     <Eye />
+                                                        // </IconButton>
+                                                        <div
+                                                            className="cursor-pointer"
                                                             onClick={() => window.open(getValues(`${item.name}`)?.fileUrl ?? getValues(`${item.name}`), "_blank")}
-                                                            color="primary"
-                                                            aria-label="Ver imagen"
                                                         >
-                                                            <Eye />
-                                                        </IconButton>
+                                                            <img
+                                                                src={getValues(`${item.name}`)?.fileUrl}
+                                                                alt="Vista previa"
+                                                                style={{ width: 100, height: "auto", marginTop: 8, borderRadius: 4 }}
+                                                            />
+                                                        </div>
                                                     )}
 
                                                     {/* Mensaje de error si no hay archivo */}
@@ -156,7 +167,7 @@ export const FormComprarTicket = ({ getValues, setValue, handleSubmit, control, 
                                         />
                                     </div>
                                 }
-                            </>
+                            </div>
                         )
                     })
                 }

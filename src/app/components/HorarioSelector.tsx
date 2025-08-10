@@ -216,7 +216,7 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                     // const estaOcupado = horariosOcupados.includes(horario)
 
                                     return (
-                                        <>
+                                        <div key={horario?.horario}>
                                             <button
                                                 key={horario?.horario}
                                                 className={`relative w-full rounded-lg border-2 text-center min-w-[60px] py-3 ${horario?.status == "2" ? "border-gray-200 bg-green-50 hover:border-gray-300" : "border-gray-200"} ${(horario?.status == true) ? "border-2 border-green-500 hover:border-green-600 bg-green-100" : "border-gray-200 bg-green-50 hover:border-gray-300"} cursor-pointer`}
@@ -257,7 +257,7 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                     </div>
                                                 )}
                                             </button>
-                                        </>
+                                        </div>
                                     )
                                 })}
                             </div>
