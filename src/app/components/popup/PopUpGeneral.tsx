@@ -13,7 +13,7 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                 {
                     getValues()?.dataPoUp?.action === "subirVoucher" &&
                     <div className="flex flex-col gap-1">
-                        <div>
+                        {/* <div>
                             <Controller
                                 name={`monto`}
                                 control={control}
@@ -122,7 +122,7 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                                     />
                                 )}
                             />
-                        </div>
+                        </div> */}
                         <div className="flex justify-start items-center gap-1">
                             <Controller
                                 name="filePago"
@@ -142,7 +142,7 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                                     };
 
                                     return (
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex flex-col items-center gap-2">
                                             <label className="cursor-pointer">
                                                 <input
                                                     type="file"
@@ -157,15 +157,25 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                                                 </div>
                                             </label>
                                             {previewUrl && (
-                                                <a
-                                                    href={previewUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-blue-600 hover:text-blue-800"
-                                                    title="Ver imagen"
+                                                // <a
+                                                //     href={previewUrl}
+                                                //     target="_blank"
+                                                //     rel="noopener noreferrer"
+                                                //     className="text-blue-600 hover:text-blue-800"
+                                                //     title="Ver imagen"
+                                                // >
+                                                //     <Eye size={18} />
+                                                // </a>
+                                                <div
+                                                    className="cursor-pointer"
+                                                    onClick={() => window.open(previewUrl, "_blank")}
                                                 >
-                                                    <Eye size={18} />
-                                                </a>
+                                                    <img
+                                                        src={previewUrl}
+                                                        alt="Vista previa"
+                                                        style={{ width: 100, height: "auto", marginTop: 8, borderRadius: 4 }}
+                                                    />
+                                                </div>
                                             )}
                                         </div>
                                     );
@@ -186,60 +196,60 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                                                 src={item.url}
                                                 alt={`Voucher ${index + 1}`}
                                                 className="w-full h-auto rounded-lg shadow-md cursor-pointer"
-                                                // onClick={async () => {
-                                                //     const { isConfirmed } = await Swal.fire({
-                                                //         title: `Cambiar Status de voucher`,
-                                                //         html: `
-                                                //                 <select id="status" class="swal2-input">
-                                                //                   <option value="">Selecciona un estado</option>
-                                                //                   <option value="0">Pendiente</option>
-                                                //                   <option value="1">Aceptado</option>
-                                                //                   <option value="2">Rechazado</option>
-                                                //                 </select>
-                                                //                 <textarea id="comentario" class="swal2-textarea" placeholder="Escribe un comentario"></textarea>
-                                                //               `,
-                                                //         focusConfirm: false,
-                                                //         showCancelButton: true,
-                                                //         confirmButtonText: 'Actualizar',
-                                                //         cancelButtonText: 'Cancelar',
-                                                //         confirmButtonColor: '#3085d6',
-                                                //         cancelButtonColor: '#d33',
-                                                //         width: '400px',
-                                                //         allowOutsideClick: () => !Swal.isLoading(),
-                                                //         showLoaderOnConfirm: true,
-                                                //         preConfirm: async () => {
-                                                //             const estado = (document.getElementById('status') as HTMLSelectElement)?.value;
-                                                //             (estado !== undefined && estado !== null && estado !== "") && (setValue("status", estado));
-                                                //             const comentario = (document.getElementById('comentario') as HTMLTextAreaElement)?.value.trim();
-                                                //             (comentario !== undefined && comentario !== null && comentario !== "") && (setValue("observaciones", comentario));
+                                                onClick={async () => {
+                                                    const { isConfirmed } = await Swal.fire({
+                                                        title: `Cambiar Status de voucher`,
+                                                        html: `
+                                                                <select id="status" class="swal2-input">
+                                                                  <option value="">Selecciona un estado</option>
+                                                                  <option value="0">Pendiente</option>
+                                                                  <option value="1">Aceptado</option>
+                                                                  <option value="2">Rechazado</option>
+                                                                </select>
+                                                                <textarea id="comentario" class="swal2-textarea" placeholder="Escribe un comentario"></textarea>
+                                                              `,
+                                                        focusConfirm: false,
+                                                        showCancelButton: true,
+                                                        confirmButtonText: 'Actualizar',
+                                                        cancelButtonText: 'Cancelar',
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        width: '400px',
+                                                        allowOutsideClick: () => !Swal.isLoading(),
+                                                        showLoaderOnConfirm: true,
+                                                        preConfirm: async () => {
+                                                            const estado = (document.getElementById('status') as HTMLSelectElement)?.value;
+                                                            (estado !== undefined && estado !== null && estado !== "") && (setValue("status", estado));
+                                                            const comentario = (document.getElementById('comentario') as HTMLTextAreaElement)?.value.trim();
+                                                            (comentario !== undefined && comentario !== null && comentario !== "") && (setValue("observaciones", comentario));
 
-                                                //             if (!estado) {
-                                                //                 Swal.showValidationMessage('Debes seleccionar un estado');
-                                                //                 return;
-                                                //             }
+                                                            if (!estado) {
+                                                                Swal.showValidationMessage('Debes seleccionar un estado');
+                                                                return;
+                                                            }
 
-                                                //             // if (!comentario) {
-                                                //             //     Swal.showValidationMessage('Debes escribir un comentario');
-                                                //             //     return;
-                                                //             // }
+                                                            // if (!comentario) {
+                                                            //     Swal.showValidationMessage('Debes escribir un comentario');
+                                                            //     return;
+                                                            // }
 
-                                                //             try {
-                                                //                 await handleEditVoucher(item._id, item.codPedido);
-                                                //             } catch (error) {
-                                                //                 Swal.showValidationMessage(`Error al actualizar: ${error}`);
-                                                //             }
-                                                //         }
-                                                //     });
+                                                            try {
+                                                                await handleEditVoucher(item._id, item.nOperacion);
+                                                            } catch (error) {
+                                                                Swal.showValidationMessage(`Error al actualizar: ${error}`);
+                                                            }
+                                                        }
+                                                    });
 
-                                                //     if (isConfirmed) {
-                                                //         Swal.fire({
-                                                //             icon: 'success',
-                                                //             title: 'Estado actualizado',
-                                                //             text: `El estado del pedido fue actualizado correctamente.`,
-                                                //             timer: 2000
-                                                //         });
-                                                //     }
-                                                // }}
+                                                    if (isConfirmed) {
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Estado actualizado',
+                                                            text: `El estado del pedido fue actualizado correctamente.`,
+                                                            timer: 2000
+                                                        });
+                                                    }
+                                                }}
                                             />
                                             <div className="">
                                                 {
@@ -287,9 +297,10 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                                     color="success"
                                     onClick={() => handleSubirVouchers(infoOrder)}
                                     disabled={
-                                        (getValues()?.monto == undefined || getValues()?.formaPago == undefined || getValues()?.dataVoucher == undefined)
-                                        || (getValues()?.monto == null || getValues()?.formaPago == null || getValues()?.dataVoucher == null)
-                                        || (getValues()?.monto == "" || getValues()?.formaPago == "" || getValues()?.dataVoucher == "")
+                                        // (getValues()?.monto == undefined || getValues()?.formaPago == undefined || getValues()?.dataVoucher == undefined)
+                                        // || (getValues()?.monto == null || getValues()?.formaPago == null || getValues()?.dataVoucher == null)
+                                        // || 
+                                        (getValues()?.monto == "" || getValues()?.formaPago == "" || getValues()?.dataVoucher == "")
                                         || loading2
                                     }
                                 >
@@ -311,6 +322,9 @@ export const PopUpGeneral = ({ getValues, setValue, control, hangeStatePopUp, ha
                         <div className="flex gap-2">
                             <Button variant="outlined" color="error" onClick={() => {
                                 hangeStatePopUp(false)
+                                setValue("dataVoucher", null);
+                                setValue("monto", null);
+                                setValue("formaPago", null);
                             }}>
                                 Cerrar
                             </Button>

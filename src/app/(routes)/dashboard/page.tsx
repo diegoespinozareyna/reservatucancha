@@ -9,12 +9,13 @@ import { usePopupOpen } from '@/app/hooks/popupopen/usePopupOpen';
 import { Autocomplete, Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import { CloudUpload, ListCheck, Loader2, PencilLine, Search } from 'lucide-react';
+import { Calendar, CloudUpload, ListCheck, Loader2, PencilLine, Save, Search } from 'lucide-react';
 import moment from 'moment-timezone';
 import { useRouter } from 'next/navigation';
 import React, { use, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Swal from 'sweetalert2';
+import "moment/locale/es"; // 👈 Esto es obligatorio
 
 export default function Dashboard() {
 
@@ -52,6 +53,52 @@ export default function Dashboard() {
         }
     }
 
+    const fetcConfigs = async () => {
+        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/getConfigsReservaFutbol`
+        try {
+            const response = await apiCall({ method: "get", endpoint: url });
+            console.log("response", response);
+            if (response?.data?.length > 0) {
+                reset({
+                    precioDiaFutbol11: response?.data?.find((x: any) => x.proyecto == Apis?.PROYECTCURRENT)?.precioDiaFutbol11 ?? "",
+                    precioNocheFutbol11: response?.data?.find((x: any) => x.proyecto == Apis?.PROYECTCURRENT)?.precioNocheFutbol11 ?? "",
+                    precioDiaFutbol7: response?.data?.find((x: any) => x.proyecto == Apis?.PROYECTCURRENT)?.precioDiaFutbol7 ?? "",
+                    precioNocheFutbol7: response?.data?.find((x: any) => x.proyecto == Apis?.PROYECTCURRENT)?.precioNocheFutbol7 ?? "",
+                })
+            }
+        } catch (error) {
+            console.error('Error al obtener datos de configs:', error);
+            // localStorage.removeItem("auth-token");
+            // window.location.href = '/';
+        }
+    }
+
+    const handlePostConfigs = async (key: any, value: any) => {
+        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/postConfigsReservaFutbol`
+        const jsonSend = {
+            key: key,
+            value: value,
+            proyecto: Apis.PROYECTCURRENT,
+        }
+        try {
+            const response = await apiCall({ method: "patch", endpoint: url, data: jsonSend })
+            console.log("responsefuianl: ", response)
+            if (response.status === 201) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Datos actualizados',
+                    text: 'Se han actualizado los datos',
+                    timer: 2000
+                });
+                fetcConfigs()
+            }
+        } catch (error) {
+            console.error('Error al obtener datos de configs:', error);
+            // localStorage.removeItem("auth-token");
+            // window.location.href = '/';
+        }
+    }
+
     useEffect(() => {
         try {
             const token = localStorage.getItem('auth-token');
@@ -63,11 +110,12 @@ export default function Dashboard() {
                 fechaFin: moment.tz("America/Lima").add(1, "days").format("YYYY-MM-DD"),
             })
             fetchData();
+            fetcConfigs()
         } catch (error) {
             console.error('Error al obtener datos del usuario:', error);
             localStorage.removeItem("auth-token");
             Swal.fire({
-                title: 'No tiene permisos o Sesión Expirada',
+                title: 'No tiene permisos o su Sesión a Expirado',
                 text: 'Por favor, inicie sesión nuevamente',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
@@ -90,7 +138,7 @@ export default function Dashboard() {
         setValue("tipoCancha", null)
     }, [tipoFutbolWatch]);
 
-    const handleChangeState = async (id: string, dni: string, nombres: string) => {
+    const handleChangeState = async (id: string, dni: string, nombres: string, canchas: any, fecha: any) => {
         const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/changeStatusReserva`;
         console.log("url", url);
 
@@ -140,6 +188,30 @@ export default function Dashboard() {
                     });
 
                     if (response.status === 201) {
+                        if (estado == "2") {
+                            console.log("entreliuberar horarios")
+                            console.log("entreliuberar canchas", canchas)
+                            console.log("entreliuberar fecha", fecha)
+
+                            const liberarHorarios = { ...canchas, fecha: fecha }
+
+                            console.log("liberarHorarios", liberarHorarios)
+
+                            const urlPagoUrl = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/liberarHorarios`;
+
+                            const jsonSend = {
+                                horarios: liberarHorarios,
+                                proyecto: Apis.PROYECTCURRENT,
+                            }
+
+                            const response2 = await apiCall({
+                                method: 'patch',
+                                endpoint: urlPagoUrl,
+                                data: jsonSend
+                            })
+                            console.log("responsefuianl: ", response2)
+
+                        }
                         return { estado, comentario }; // Devuelve valores para usarlos fuera
                     } else {
                         Swal.showValidationMessage('Error al actualizar el estado');
@@ -147,6 +219,8 @@ export default function Dashboard() {
                 } catch (error) {
                     Swal.showValidationMessage(`Error al actualizar: ${error}`);
                 }
+
+
             }
         });
 
@@ -179,6 +253,10 @@ export default function Dashboard() {
 
     const handleSubirVouchers = async () => {
         const datosPedido = getValues()?.dataPoUp?.infoOrder
+        const nOperacion = getValues()?.dataPoUp?.nOperacion
+        const fecha = getValues()?.dataPoUp?.fecha
+        const documentoUsuario = getValues()?.dataPoUp?.documentoUsuario
+        const condeptoPago = getValues()?.dataPoUp?.condeptoPago
         try {
             if (!getValues()?.dataVoucher) return alert("Selecciona una imagen");
             setLoading2(true)
@@ -191,23 +269,39 @@ export default function Dashboard() {
             });
             // console.log("res", res);
             if (res.status == 200) {
-                const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/subirVoucher`;
+                const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/subirVoucherReservaFutbol`;
 
                 const jsonSend = {
-                    codPedido: datosPedido?._id,
-                    nOperacion: new Date().getTime(),
-                    documentoUsuario: datosPedido?.documentoUsuario,
-                    fechaPago: moment.tz("America/Lima").format("YYYY-MM-DD"),
-                    formaPago: getValues()?.formaPago,
-                    monto: getValues()?.monto,
-                    fechaVerificacion: "",
+                    conceptoPago: condeptoPago,
+                    // codPedido: datosPedido?._id,
+                    documentoUsuario: documentoUsuario,
                     estadoVerificacion: "0",
-                    conceptoPago: "pago pedido",
-                    status: "0", // "0" pendiente, "1" aceptado, "2" rechazado
+                    fechaPago: fecha,
+                    fechaVerificacion: "",
+                    formaPago: getValues()?.formaPago,
+                    horarios: getValues()?.horariosAll?.filter((x: any) => x.status == "1")?.map((x: any) => x.horario).join(", "),
+                    monto: getValues()?.monto,
+                    nOperacion: nOperacion,
                     observaciones: "",
                     proyecto: Apis.PROYECTCURRENT,
+                    status: "0", // "0" pendiente, "1" aceptado, "2" rechazado
                     url: res?.data?.url,
                 }
+                // const jsonSend = {
+                //     codPedido: datosPedido?._id,
+                //     nOperacion: nOperacion,
+                //     documentoUsuario: datosPedido?.documentoUsuario,
+                //     fechaPago: moment.tz("America/Lima").format("YYYY-MM-DD"),
+                //     formaPago: getValues()?.formaPago,
+                //     monto: getValues()?.monto,
+                //     fechaVerificacion: "",
+                //     estadoVerificacion: "0",
+                //     conceptoPago: "pago pedido",
+                //     status: "0", // "0" pendiente, "1" aceptado, "2" rechazado
+                //     observaciones: "",
+                //     proyecto: Apis.PROYECTCURRENT,
+                //     url: res?.data?.url,
+                // }
 
                 const response = await apiCall({
                     method: 'post',
@@ -222,17 +316,7 @@ export default function Dashboard() {
                         text: 'Se ha subido el voucher',
                         timer: 2000
                     });
-
-                    const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/insertUrlsPagos`;
-                    const response = await apiCall({
-                        method: "patch", endpoint: url, data: {
-                            id: datosPedido?._id,
-                            urlPago: res?.data?.url,
-                        }
-                    });
-                    // console.log("response", response?.data)
-                    fetchData()
-                    hangeStatePopUp(false);
+                    hangeStatePopUp(false)
                 }
             }
         }
@@ -252,9 +336,9 @@ export default function Dashboard() {
         }
     }
 
-    const handleEditVoucher = async (id: string, idPedido: string) => {
+    const handleEditVoucher = async (id: string, nOperacion: string) => {
         console.log("id", id);
-        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/getEditVoucher`;
+        const url = `${Apis.URL_APOIMENT_BACKEND_DEV}/api/auth/getEditVoucherReservaFutbol`;
         try {
             const response = await apiCall({
                 method: "patch", endpoint: url, data: {
@@ -274,7 +358,7 @@ export default function Dashboard() {
                 });
                 setValue("status", "");
                 setValue("observaciones", "");
-                // await handleGetVouchersAll(idPedido);
+                await handleGetVouchersAll(nOperacion);
             }
         } catch (error) {
             console.error("Error al editar el voucher: ", error);
@@ -349,14 +433,14 @@ export default function Dashboard() {
                                                 )}
                                             />
                                         </div>
-                                        {/* <div>
+                                        <div>
                                             <Controller
                                                 name={`documentoUsuario`}
                                                 control={control}
                                                 render={({ field }) => (
                                                     <TextField
                                                         {...field}
-                                                        label="DNI o Nombre Usuario"
+                                                        label="DNI"
                                                         variant="outlined"
                                                         size="small"
                                                         type="text"
@@ -376,7 +460,7 @@ export default function Dashboard() {
                                                     />
                                                 )}
                                             />
-                                        </div> */}
+                                        </div>
                                         {/* <div>
                                         <Controller
                                             name={`nombreCliente`}
@@ -405,7 +489,7 @@ export default function Dashboard() {
                                             )}
                                         />
                                         </div> */}
-                                        {/* <div className='-mt-2'>
+                                        <div className='-mt-2'>
                                             <Controller
                                                 name={`status`}
                                                 control={control}
@@ -450,7 +534,7 @@ export default function Dashboard() {
                                                     />
                                                 )}
                                             />
-                                        </div> */}
+                                        </div>
                                         {/* <div className='grid grid-cols-2 md:grid-cols-2 justify-start items-center gap-2'> */}
                                         {/* <div className='-mt-2 w-full'>
                                             <Controller
@@ -592,7 +676,7 @@ export default function Dashboard() {
                                         </div> */}
                                     </div>
                                     {/* </div> */}
-                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mt-2'>
+                                    <div className='grid grid-cols-1 md:grid-cols-1 gap-3 mt-2'>
                                         <div className='-mt-0'>
                                             <Button
                                                 disabled={loading}
@@ -612,26 +696,212 @@ export default function Dashboard() {
                                                 </div>
                                             </Button>
                                         </div>
-                                        <div className='-mt-0'>
-                                            <Button
-                                                disabled={loading}
-                                                loading={loading}
-                                                sx={{ width: "100%", height: "40px" }}
-                                                variant="contained"
-                                                color="primary"
-                                                type="button"
-                                                onClick={() => router.push("/")}
-                                            >
-                                                <div className='flex justify-center items-center gap-2'>
-                                                    {/* <div>
-                                                    <Search size={15} />
-                                                </div> */}
-                                                    <div className='mt-[0.10rem]'>
-                                                        Ver Disponibilidad de Horarios
-                                                    </div>
-                                                </div>
-                                            </Button>
+                                    </div>
+                                    <div className='grid grid-cols-[auto_1fr_1fr] gap-5 justify-start items-center w-full mt-4'>
+                                        <div className="text-base">Precios F11:</div>
+                                        <div className='flex justify-start items-center gap-1'>
+                                            <Controller
+                                                name={`precioDiaFutbol11`}
+                                                control={control}
+                                                render={({ field, fieldState }) => (
+                                                    <TextField
+                                                        {...field}
+                                                        label="Día"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        type="number"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        fullWidth
+                                                        required={false}
+                                                        className="w-full"
+                                                        onChange={(e: any) => {
+                                                            let value = e.target.value;
+                                                            field.onChange(value);
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                            <div>
+                                                <button onClick={() => {
+                                                    Swal.fire({
+                                                        title: "¿Seguro que desea actualizar el precio de 'DIA F11'?",
+                                                        icon: "warning",
+                                                        confirmButtonText: 'Si',
+                                                        cancelButtonText: 'Cancelar',
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        showLoaderOnConfirm: true,
+                                                        allowOutsideClick: false,
+                                                        showCancelButton: true,
+                                                        preConfirm: () => {
+                                                            handlePostConfigs("precioDiaFutbol11", getValues()?.precioDiaFutbol11)
+                                                        },
+                                                    });
+                                                }} className='bg-blue-400 hover:bg-blue-600 text-white text-lg rounded-md px-2 py-2 w-full' type="button">
+                                                    <Save size={21} />
+                                                </button>
+                                            </div>
                                         </div>
+                                        <div className='flex justify-start items-center gap-1'>
+                                            <Controller
+                                                name={`precioNocheFutbol11`}
+                                                control={control}
+                                                render={({ field, fieldState }) => (
+                                                    <TextField
+                                                        {...field}
+                                                        label="Noche"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        type="number"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        fullWidth
+                                                        required={false}
+                                                        className="w-full"
+                                                        onChange={(e: any) => {
+                                                            let value = e.target.value;
+                                                            field.onChange(value);
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                            <div>
+                                                <button onClick={() => {
+                                                    Swal.fire({
+                                                        title: "¿Seguro que desea actualizar el precio de 'NOCHE F11'?",
+                                                        icon: "warning",
+                                                        confirmButtonText: 'Si',
+                                                        cancelButtonText: 'Cancelar',
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        showLoaderOnConfirm: true,
+                                                        allowOutsideClick: false,
+                                                        showCancelButton: true,
+                                                        preConfirm: () => {
+                                                            handlePostConfigs("precioNocheFutbol11", getValues()?.precioNocheFutbol11)
+                                                        },
+                                                    });
+                                                }} className='bg-blue-400 hover:bg-blue-600 text-white text-lg rounded-md px-2 py-2 w-full' type="button">
+                                                    <Save size={21} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='grid grid-cols-[auto_1fr_1fr] gap-5 mt-2 justify-start items-center w-full'>
+                                        <div className="text-base">Precios F7 :</div>
+                                        <div className='flex justify-start items-center gap-1'>
+                                            <Controller
+                                                name={`precioDiaFutbol7`}
+                                                control={control}
+                                                render={({ field, fieldState }) => (
+                                                    <TextField
+                                                        {...field}
+                                                        label="Día"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        type="number"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        fullWidth
+                                                        required={false}
+                                                        className="w-full"
+                                                        onChange={(e: any) => {
+                                                            let value = e.target.value;
+                                                            field.onChange(value);
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                            <div>
+                                                <button onClick={() => {
+                                                    Swal.fire({
+                                                        title: "¿Seguro que desea actualizar el precio de 'DIA F7'?",
+                                                        icon: "warning",
+                                                        confirmButtonText: 'Si',
+                                                        cancelButtonText: 'Cancelar',
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        showLoaderOnConfirm: true,
+                                                        allowOutsideClick: false,
+                                                        showCancelButton: true,
+                                                        preConfirm: () => {
+                                                            handlePostConfigs("precioDiaFutbol7", getValues()?.precioDiaFutbol7)
+                                                        },
+                                                    });
+                                                }} className='bg-blue-400 hover:bg-blue-600 text-white text-lg rounded-md px-2 py-2 w-full' type="button">
+                                                    <Save size={21} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='flex justify-start items-center gap-1'>
+                                            <Controller
+                                                name={`precioNocheFutbol7`}
+                                                control={control}
+                                                render={({ field, fieldState }) => (
+                                                    <TextField
+                                                        {...field}
+                                                        label="Noche"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        type="number"
+                                                        InputLabelProps={{
+                                                            shrink: true,
+                                                        }}
+                                                        fullWidth
+                                                        required={false}
+                                                        className="w-full"
+                                                        onChange={(e: any) => {
+                                                            let value = e.target.value;
+                                                            field.onChange(value);
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                            <div>
+                                                <button onClick={() => {
+                                                    Swal.fire({
+                                                        title: "¿Seguro que desea actualizar el precio de 'NOCHE F7'?",
+                                                        icon: "warning",
+                                                        confirmButtonText: 'Si',
+                                                        cancelButtonText: 'Cancelar',
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        showLoaderOnConfirm: true,
+                                                        allowOutsideClick: false,
+                                                        showCancelButton: true,
+                                                        preConfirm: () => {
+                                                            handlePostConfigs("precioNocheFutbol7", getValues()?.precioNocheFutbol7)
+                                                        },
+                                                    });
+                                                }} className='bg-blue-400 hover:bg-blue-600 text-white text-lg rounded-md px-2 py-2 w-full' type="button">
+                                                    <Save size={21} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='mt-3'>
+                                        <Button
+                                            disabled={loading}
+                                            loading={loading}
+                                            sx={{ width: "100%", height: "40px" }}
+                                            variant="contained"
+                                            color="info"
+                                            type="button"
+                                            onClick={() => router.push("/")}
+                                        >
+                                            <div className='flex justify-center items-center gap-2'>
+                                                <div>
+                                                    <Calendar size={15} />
+                                                </div>
+                                                <div className='mt-[0.10rem]'>
+                                                    Ver Disponibilidad de Horarios
+                                                </div>
+                                            </div>
+                                        </Button>
                                     </div>
                                 </form>
                                 <div id="tabla">
@@ -663,14 +933,24 @@ export default function Dashboard() {
                                                                         style={{ backgroundColor: index % 2 == 0 ? "#f2f2f2" : "#ffffff" }}
                                                                         className="border-t text-sm text-gray-700 hover:bg-gray-50"
                                                                     >
-                                                                        <td className="p-3">
-                                                                            {pedido.fecha?.split?.("T")[0].split?.("-")[2]}-{pedido.fecha?.split?.("T")[0].split?.("-")[1]}-{pedido.fecha?.split?.("T")[0].split?.("-")[0]}
+                                                                        <td className="p-3 uppercase">
+                                                                            {moment.tz(pedido.fecha, "America/Lima").locale("es").format("dddd, DD/MM/YYYY")}
+                                                                            {/* {pedido.fecha?.split?.("T")[0].split?.("-")[2]}-{pedido.fecha?.split?.("T")[0].split?.("-")[1]}-{pedido.fecha?.split?.("T")[0].split?.("-")[0]} */}
                                                                         </td>
                                                                         <td className="p-3">
                                                                             <div className="flex justify-start items-center gap-1">
                                                                                 <button
-                                                                                    className={`text-xs ${pedido.status == "0" ? "bg-yellow-500 hover:bg-yellow-700" : pedido.status == "1" ? "bg-green-500 hover:bg-green-700" : pedido.status == "2" ? "bg-red-500 hover:bg-red-700" : "bg-yellow-500 hover:bg-yellow-700"} text-white px-2 py-1 rounded-lg`}
-                                                                                    onClick={() => handleChangeState(pedido._id, pedido?.documentoUsuario, pedido?.nombresUsuario)}
+                                                                                    disabled={pedido.status == "2"}
+                                                                                    className={`text-xs ${pedido.status == "0" ? "bg-yellow-500 hover:bg-yellow-700" : pedido.status == "1" ? "bg-green-500 hover:bg-green-700" : pedido.status == "2" ? "bg-red-500 hover:bg-red-700 disabled:opacity-30" : "bg-yellow-500 hover:bg-yellow-700"} text-white px-2 py-1 rounded-lg`}
+                                                                                    onClick={() => handleChangeState(pedido._id, pedido?.documentoUsuario, pedido?.nombresUsuario,
+                                                                                        {
+                                                                                            cancha0: pedido?.cancha0,
+                                                                                            cancha1: pedido?.cancha1,
+                                                                                            cancha2: pedido?.cancha2,
+                                                                                            cancha3: pedido?.cancha3,
+                                                                                            cancha4: pedido?.cancha4,
+                                                                                        },
+                                                                                        pedido?.fecha)}
                                                                                 >
                                                                                     {pedido.status == "0" ? "Pendiente" : pedido.status == "1" ? "Aprobado" : pedido.status == "2" ? "Rechazado" : "Pendiente"}
                                                                                 </button>
@@ -681,25 +961,29 @@ export default function Dashboard() {
                                                                                 {`S/. ${changeDecimales(pedido?.precio)}`}
                                                                             </div>
                                                                             <div className="flex justify-start items-center gap-2 mt-2">
-                                                                                {/* <div
+                                                                                <div
                                                                                     onClick={() => {
                                                                                         hangeStatePopUp(true)
                                                                                         setValue("dataPoUp", {
-                                                                                            title: `Subir Voucher de ${pedido?.nombresUsuario} - ${pedido?.documentoUsuario}`,
+                                                                                            title: `Subir Voucher de ${pedido?.nombres} - ${pedido?.documentoUsuario}`,
                                                                                             infoOrder: pedido,
                                                                                             action: "subirVoucher",
+                                                                                            nOperacion: pedido?.nOperacion,
+                                                                                            fecha: pedido.fecha,
+                                                                                            documentoUsuario: pedido?.documentoUsuario,
+                                                                                            condeptoPago: pedido?.cancha0 !== "futbol7" && `futbo11`,
                                                                                         })
                                                                                     }}
                                                                                     className={`text-xs bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded-lg flex items-center cursor-pointer`}
                                                                                 >
                                                                                     <CloudUpload size={15} />
-                                                                                </div> */}
+                                                                                </div>
                                                                                 <div
                                                                                     onClick={() => {
                                                                                         hangeStatePopUp(true)
                                                                                         handleGetVouchersAll(pedido?.nOperacion)
                                                                                         setValue("dataPoUp", {
-                                                                                            title: `Voucher(s) de ${pedido?.nombresUsuario} - ${pedido?.documentoUsuario}`,
+                                                                                            title: `Voucher(s) de ${pedido?.nombres} - ${pedido?.documentoUsuario}`,
                                                                                             infoOrder: pedido,
                                                                                             action: "verVouchers",
                                                                                         })
@@ -795,8 +1079,8 @@ export default function Dashboard() {
                                 openPopup &&
                                 <PopUpGeneral getValues={getValues} setValue={setValue} control={control} hangeStatePopUp={hangeStatePopUp} handleSubirVouchers={handleSubirVouchers} handleEditVoucher={handleEditVoucher} loading2={loading2} />
                             }
-                        </div>
-                    </div>
+                        </div >
+                    </div >
                     :
                     <div className="font-sans text-slate-800 min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
                         No tiene permisos para acceder a esta página o caducó su sesión...
