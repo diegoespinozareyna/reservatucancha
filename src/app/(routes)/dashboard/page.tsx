@@ -375,9 +375,9 @@ export default function Dashboard() {
         <>
             {
                 user !== null ?
-                    <div className="font-sans text-slate-800 min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
-                        <div className="max-w-2xl mx-auto">
-                            <div className='mt-0 mb-3 uppercase text-center text-base font-bold text-black'>
+                    <div className="font-sans text-slate-800 min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4 relative z-50">
+                        <div className="max-w-2xl mx-auto relative z-50">
+                            <div className='mt-0 mb-3 uppercase text-center text-base font-bold text-black relative z-50'>
                                 {"Reservas"}
                             </div>
                             <div>
@@ -904,13 +904,13 @@ export default function Dashboard() {
                                         </Button>
                                     </div>
                                 </form>
-                                <div id="tabla">
-                                    <div className="mt-3 md:ml-[000px] base:ml-[000px] ml-[00px]">
+                                <div id="tabla" className='relative z-0'>
+                                    <div className="mt-3 md:ml-[000px] base:ml-[000px] ml-[00px] relative z-0">
                                         {
                                             datosFiltrados?.length > 0 ?
-                                                <div className="p-0 flex justify-center items-center">
-                                                    <div className="w-[100vw-100px] h-[70vh] md:h-[80vh] overflow-y-auto overflow-x-auto">
-                                                        <table className="w-[100vw-100px] bg-white border border-gray-200 rounded-lg shadow-md">
+                                                <div className="p-0 flex justify-center items-center relative z-0">
+                                                    <div className="w-[100vw-100px] h-[43vh] md:h-[70vh] overflow-y-auto overflow-x-auto relative z-0">
+                                                        <table className="w-[100vw-100px] h-[70vh] md:h-[70vh] bg-white border border-gray-200 rounded-lg shadow-md relative z-0">
                                                             <thead className="sticky top-0 z-10 bg-green-100">
                                                                 <tr className="bg-green-600 text-left text-sm text-gray-50">
                                                                     <th className="p-3 border-b">Fecha</th>

@@ -18,7 +18,7 @@ interface FormularioReservaProps {
     onBack: () => void
 }
 
-export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComplete, onBack, getValues, setValue, handleSubmit, control, onSubmit }: any) => {
+export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComplete, onBack, getValues, setValue, handleSubmit, control, onSubmit, loading }: any) => {
 
     const [formData, setFormData] = useState({
         nombre: "",
@@ -30,7 +30,7 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
     const precio = modalidad === "futbol11" ? 120 : 90
 
     // const { handleSubmit, control, getValues, setValue } = useForm()
-    const { apiCall, loading, error } = useApi()
+    const { apiCall, error } = useApi()
 
     // const handleSubmit = (e: React.FormEvent) => {
     //     e.preventDefault()
@@ -165,7 +165,7 @@ export const FormularioReserva = ({ modalidad, fecha, horario, seccion, onComple
                                         variant="contained"
                                         color="success"
                                         type="submit"
-                                        className="w-full button-attention"
+                                        className="w-full"
                                         disabled={loading}
                                     >
                                         Reservar Ahora

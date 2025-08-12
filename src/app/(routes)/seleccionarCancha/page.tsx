@@ -2182,6 +2182,7 @@ export default function SeleccionarCancha() {
                         handleSubmit={handleSubmit}
                         control={control}
                         onSubmit={onSubmit}
+                        loading={loading}
                     />
                 )}
             </div>
