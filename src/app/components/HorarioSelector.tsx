@@ -176,11 +176,20 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                     {`S/. ${Number(getValues()?.horariosAll?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
                                             </div>
-                                            {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2") && (
-                                                <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                    Ocupado
-                                                </div>
-                                            )}
+                                            {(
+                                                getValues()?.horariosfutbol7cancha1?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2"
+                                            ) && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F7
+                                                    </div>
+                                                )}
+                                            {(
+                                                getValues(`horariosAll`)?.[index]?.status == "2"
+                                            ) && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F11
+                                                    </div>
+                                                )}
                                         </button>
                                     )
                                 })}
@@ -251,9 +260,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                 <div className="text-[11px] text-gray-600">
                                                     {`S/. ${Number(getValues()?.horariosfutbol7cancha1?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
-                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha1?.[index]?.status == "2") && (
+                                                {(getValues()?.horariosfutbol7cancha1?.[index]?.status == "2") && (
                                                     <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                        Ocupado
+                                                        Ocupado - F7
+                                                    </div>
+                                                )}
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F11
                                                     </div>
                                                 )}
                                             </button>
@@ -309,9 +323,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                 <div className="text-[11px] text-gray-600">
                                                     {`S/. ${Number(getValues()?.horariosfutbol7cancha2?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
-                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha2?.[index]?.status == "2") && (
+                                                {(getValues()?.horariosfutbol7cancha2?.[index]?.status == "2") && (
                                                     <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                        Ocupado
+                                                        Ocupado - F7
+                                                    </div>
+                                                )}
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F11
                                                     </div>
                                                 )}
                                             </button>
@@ -367,9 +386,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                 <div className="text-[11px] text-gray-600">
                                                     {`S/. ${Number(getValues()?.horariosfutbol7cancha3?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
-                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha3?.[index]?.status == "2") && (
+                                                {(getValues()?.horariosfutbol7cancha3?.[index]?.status == "2") && (
                                                     <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                        Ocupado
+                                                        Ocupado - F7
+                                                    </div>
+                                                )}
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F11
                                                     </div>
                                                 )}
                                             </button>
@@ -425,9 +449,14 @@ export function HorarioSelector({ modalidad, handleHorarioSelect, getValues, set
                                                 <div className="text-[11px] text-gray-600">
                                                     {`S/. ${Number(getValues()?.horariosfutbol7cancha4?.[index]?.precio)?.toFixed(2)}`}
                                                 </div>
-                                                {(getValues(`horariosAll`)?.[index]?.status == "2" || getValues()?.horariosfutbol7cancha4?.[index]?.status == "2") && (
+                                                {(getValues()?.horariosfutbol7cancha4?.[index]?.status == "2") && (
                                                     <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
-                                                        Ocupado
+                                                        Ocupado - F7
+                                                    </div>
+                                                )}
+                                                {(getValues(`horariosAll`)?.[index]?.status == "2") && (
+                                                    <div className="absolute -top-1 -right-1 text-xs px-1 text-white bg-red-400 rounded-lg">
+                                                        Ocupado - F11
                                                     </div>
                                                 )}
                                             </button>

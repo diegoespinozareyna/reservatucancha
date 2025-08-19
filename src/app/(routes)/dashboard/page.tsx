@@ -143,7 +143,7 @@ export default function Dashboard() {
         console.log("url", url);
 
         const { isConfirmed } = await Swal.fire({
-            title: `Cambiar estado del pedido de ${nombres} - ${dni}`,
+            title: `Cambiar estado del pedido`,
             html: `
             <select id="estado" class="swal2-input">
               <option value="">Selecciona un estado</option>
