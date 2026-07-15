@@ -29,6 +29,25 @@ export default function SeleccionarCancha() {
 
     const [user, setUser] = useState<any>(null);
 
+    useEffect(() => {
+        try {
+            const token = localStorage?.getItem('auth-token');
+            const decoded: any = jwtDecode(token as string);
+            console.log('Datos del usuario:', decoded?.user);
+            setUser(decoded?.user);
+            fetcConfigs()
+        } catch (error) {
+            setUser(null);
+            console.log("errores")
+        }
+        try {
+            fetcConfigs()
+            console.log("hola")
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
+
     const formAll = watch()
     console.log("formAll: ", formAll)
     const formHortarios11 = watch(`horariosAll`)
@@ -77,18 +96,6 @@ export default function SeleccionarCancha() {
             // window.location.href = '/';
         }
     }
-
-    useEffect(() => {
-        try {
-            const token = localStorage.getItem('auth-token');
-            const decoded: any = jwtDecode(token as string);
-            console.log('Datos del usuario:', decoded?.user);
-            setUser(decoded?.user);
-            fetcConfigs()
-        } catch (error) {
-            setUser(null);
-        }
-    }, [])
 
     const handleHorarioSelect = (fecha: Date, horario: string) => {
         setFechaSeleccionada(fecha)
